@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tone@14.8.49/build/Tone.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -377,8 +378,8 @@ tbody tr:hover td{background:var(--blue-50)}
 /* Tour từng bước */
 .site-tour-root{position:fixed;inset:0;z-index:10001;display:none}
 .site-tour-root.open{display:block}
-.site-tour-dim{position:absolute;inset:0;z-index:1;background:rgba(10,37,64,0.45);backdrop-filter:blur(3px)}
-.site-tour-hole{position:absolute;z-index:2;border-radius:14px;border:3px solid var(--blue-500);box-shadow:0 0 0 4000px rgba(10,37,64,0.68);background:transparent;pointer-events:none;transition:top 0.35s ease,left 0.35s ease,width 0.35s ease,height 0.35s ease,opacity 0.25s ease;opacity:0}
+.site-tour-dim{position:absolute;inset:0;z-index:1;background:rgba(10,37,64,0.38);backdrop-filter:blur(4px)}
+.site-tour-hole{position:absolute;z-index:2;border-radius:14px;border:2px solid rgba(255,255,255,0.95);box-shadow:0 0 0 2px rgba(46,158,214,0.95),0 0 28px rgba(142,205,232,0.88),0 0 0 4000px rgba(10,37,64,0.64);background:rgba(255,255,255,0.05);backdrop-filter:brightness(1.22) saturate(1.08);pointer-events:none;transition:top 0.35s ease,left 0.35s ease,width 0.35s ease,height 0.35s ease,opacity 0.25s ease;opacity:0}
 .site-tour-hole.visible{opacity:1}
 .site-tour-pop{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;width:min(420px,calc(100% - 32px));background:var(--white);border-radius:16px;padding:20px 20px 16px;box-shadow:0 16px 48px rgba(10,37,64,0.28);border:1px solid var(--border);z-index:10002;pointer-events:auto}
 .site-tour-pop.site-tour-pop-center{top:50%;bottom:auto;transform:translate(-50%,-50%)}
@@ -1183,6 +1184,8 @@ let listPage = 1;
 let audioCtx = null;
 let revenueChart = null;
 let siteTourIndex = 0;
+let guideSynth = null;
+let guideAudioReady = false;
 
 const USERS = [{u:'admin', p:'admin123'}, {u:'tungvinhhy', p:'123zxc123'}];
 
@@ -1201,7 +1204,7 @@ window.addEventListener('resize', ()=>{
     renderBillList();
   }
   if(document.getElementById('siteTourRoot')?.classList.contains('open')){
-    applySiteTourStep();
+    applySiteTourStep('silent');
   }
 });
 
@@ -1383,7 +1386,8 @@ function startSiteTour(){
   root.classList.add('open');
   root.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
-  applySiteTourStep();
+  ensureGuideAudioReady();
+  applySiteTourStep('step');
 }
 
 function siteTourFinish(){
@@ -1391,6 +1395,7 @@ function siteTourFinish(){
   document.getElementById('siteTourRoot').setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
   document.getElementById('siteTourHole').classList.remove('visible');
+  playGuideCue('finish');
   try{ localStorage.setItem('tvh_intro_v1','done'); }catch(e){}
   closeSidebar();
 }
@@ -1401,16 +1406,48 @@ function siteTourNext(){
     return;
   }
   siteTourIndex++;
-  applySiteTourStep();
+  applySiteTourStep('step');
 }
 
 function siteTourPrev(){
   if(siteTourIndex <= 0) return;
   siteTourIndex--;
-  applySiteTourStep();
+  applySiteTourStep('prev');
 }
 
-function applySiteTourStep(){
+async function ensureGuideAudioReady(){
+  if(guideAudioReady || !window.Tone) return;
+  try{
+    await Tone.start();
+    if(!guideSynth){
+      guideSynth = new Tone.Synth({
+        oscillator:{ type:'sine' },
+        envelope:{ attack:0.01, decay:0.1, sustain:0.08, release:0.2 }
+      }).toDestination();
+      guideSynth.volume.value = -12;
+    }
+    guideAudioReady = true;
+  }catch(e){}
+}
+
+function playGuideCue(type){
+  if(!guideSynth || !guideAudioReady) return;
+  try{
+    const now = Tone.now();
+    if(type === 'finish'){
+      guideSynth.triggerAttackRelease('E5','8n',now);
+      guideSynth.triggerAttackRelease('A5','8n',now + 0.13);
+      return;
+    }
+    if(type === 'prev'){
+      guideSynth.triggerAttackRelease('C5','16n',now);
+      return;
+    }
+    guideSynth.triggerAttackRelease('G5','16n',now);
+  }catch(e){}
+}
+
+function applySiteTourStep(soundType){
   const step = SITE_TOUR_STEPS[siteTourIndex];
   if(!step) return;
   const skipClose = window.innerWidth <= 768 && step.selector && (step.selector === '#tourSidebarNav' || step.selector.indexOf('[data-page=') === 0);
@@ -1423,6 +1460,9 @@ function applySiteTourStep(){
   document.getElementById('siteTourStepLabel').textContent = 'Bước ' + (siteTourIndex + 1) + '/' + SITE_TOUR_STEPS.length;
   document.getElementById('siteTourTitle').textContent = step.title;
   document.getElementById('siteTourBody').textContent = step.body;
+  if(soundType && soundType !== 'silent'){
+    playGuideCue(soundType);
+  }
   if(step.center){
     hole.classList.remove('visible');
     pop.classList.add('site-tour-pop-center');
