@@ -7,19 +7,19 @@
 <meta name="description" content="Hệ Thống Quản Lý Hóa Đơn - Tùng Vĩnh Hy">
 <meta property="og:title" content="Tùng Vĩnh Hy - Quản Lý Bill">
 <meta property="og:description" content="Hệ Thống Quản Lý Hóa Đơn - Lưu Trú, Cano, Xe Điện">
-<meta property="og:image" content="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2">
+<meta property="og:image" content="./image/tungvinhhy.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tùng Vĩnh Hy - Quản Lý Bill">
-<meta name="twitter:image" content="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2">
+<meta name="twitter:image" content="./image/tungvinhhy.jpg">
 <meta name="theme-color" content="#0d3a6e">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="TVH Bill">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="icon" type="image/jpeg" href="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2">
+<link rel="icon" type="image/jpeg" href="./image/tungvinhhy.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
@@ -57,10 +57,21 @@ html{overflow-x:hidden}
 /* ===== LOGIN PAGE ===== */
 #loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--blue-900) 0%,var(--blue-700) 100%)}
 .login-waves{position:absolute;bottom:0;left:0;width:100%;pointer-events:none;z-index:0}
-.login-container{display:flex;width:100%;max-width:920px;min-height:560px;z-index:2;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(10,37,64,0.55);margin:20px}
+.login-dongson{position:absolute;width:clamp(180px,22vw,320px);aspect-ratio:1/1;border-radius:50%;pointer-events:none;z-index:1;border:1.5px solid rgba(142,205,232,0.28);background:
+radial-gradient(circle at center,rgba(142,205,232,0.16) 0 14%,transparent 15% 100%),
+repeating-conic-gradient(from 0deg,rgba(142,205,232,0.24) 0 9deg,rgba(142,205,232,0.04) 9deg 18deg);
+box-shadow:0 0 0 10px rgba(142,205,232,0.08),0 0 34px rgba(30,122,173,0.22);
+animation:dongsonSpin 26s linear infinite}
+.login-dongson-left{left:max(-70px,-4vw);top:9vh}
+.login-dongson-right{right:max(-80px,-5vw);bottom:8vh;animation-duration:32s;animation-direction:reverse}
+.login-curve{position:absolute;border-radius:999px;pointer-events:none;z-index:1;opacity:0.4;filter:drop-shadow(0 0 10px rgba(142,205,232,0.28));animation:curveFloat 9s ease-in-out infinite}
+.login-curve::before{content:'';position:absolute;inset:0;border-radius:inherit;border:2px solid rgba(184,223,240,0.52);border-left-color:transparent;border-bottom-color:transparent}
+.login-curve-one{width:min(58vw,760px);height:220px;top:8%;left:-18%;transform:rotate(-10deg)}
+.login-curve-two{width:min(52vw,660px);height:200px;right:-16%;bottom:8%;transform:rotate(14deg);animation-delay:-3s}
+.login-container{display:flex;width:100%;max-width:920px;min-height:560px;z-index:2;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(10,37,64,0.55);margin:20px;backdrop-filter:blur(0.5px)}
 .login-image-side{flex:1;position:relative;overflow:hidden;min-height:300px}
-.login-image-side img{width:100%;height:100%;object-fit:cover;display:block}
-.login-image-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,37,64,0.25) 0%,rgba(10,37,64,0.72) 100%);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:36px 32px}
+.login-image-side img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.04);animation:loginImageShift 14s ease-in-out infinite}
+.login-image-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,37,64,0.14) 0%,rgba(10,37,64,0.36) 48%,rgba(10,37,64,0.54) 100%);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:36px 32px}
 .login-image-overlay h2{font-size:24px;font-weight:800;color:#fff;line-height:1.35;text-shadow:0 2px 8px rgba(0,0,0,0.35)}
 .login-image-overlay p{font-size:13px;color:rgba(255,255,255,0.8);font-weight:500;margin-top:8px}
 .login-image-overlay .login-badges{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
@@ -83,8 +94,33 @@ html{overflow-x:hidden}
 .remember-row{display:flex;align-items:center;gap:8px;margin-bottom:18px}
 .remember-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--blue-500)}
 .remember-row label{font-size:13px;color:var(--text-light);font-weight:500}
+@keyframes dongsonSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+@keyframes curveFloat{
+  0%,100%{transform:translateY(0px) rotate(-10deg)}
+  50%{transform:translateY(-10px) rotate(-7deg)}
+}
+.login-curve-two{animation-name:curveFloatRight}
+@keyframes curveFloatRight{
+  0%,100%{transform:translateY(0px) rotate(14deg)}
+  50%{transform:translateY(12px) rotate(10deg)}
+}
+@keyframes loginImageShift{
+  0%,100%{transform:scale(1.04) translateX(0)}
+  50%{transform:scale(1.08) translateX(-6px)}
+}
+@media(max-width:1100px){
+  .login-dongson{opacity:0.8}
+  .login-curve{opacity:0.3}
+}
 @media(max-width:680px){
   #loginPage{padding:0}
+  .login-dongson{width:130px;border-width:1px;box-shadow:0 0 0 6px rgba(142,205,232,0.06)}
+  .login-dongson-left{left:-54px;top:6vh}
+  .login-dongson-right{right:-56px;bottom:4vh}
+  .login-curve{display:none}
   .login-container{flex-direction:column;max-width:100%;height:100vh;min-height:100vh;border-radius:0;margin:0}
   .login-image-side{min-height:42vh;height:42vh;max-height:360px;flex:none}
   .login-image-overlay{padding:18px 18px}
@@ -286,29 +322,39 @@ tbody tr:hover td{background:var(--blue-50)}
 .form-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
 
 /* BILL LIST */
-.bills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.bill-card{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);border:1px solid var(--border);transition:box-shadow 0.2s}
+.bills-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.bill-card{background:var(--white);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow);border:1px solid var(--border);transition:box-shadow 0.2s;display:grid;grid-template-columns:minmax(0,1fr) 168px;gap:8px;align-items:center}
 .bill-card:hover{box-shadow:0 8px 32px rgba(10,37,64,0.16)}
-.bill-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
-.bill-card-id{font-size:12px;font-weight:700;color:var(--text-light)}
-.bill-card-date{font-size:11px;color:var(--text-light);font-weight:600}
-.bill-card-body{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-.bill-info-row{display:flex;justify-content:space-between;align-items:center;font-size:13px}
-.bill-info-row span:first-child{color:var(--text-light);font-weight:600}
-.bill-info-row span:last-child{color:var(--text-dark);font-weight:700}
-.bill-amount{font-size:18px;font-weight:800;color:var(--blue-600)}
-.bill-card-footer{display:flex;gap:8px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--blue-50)}
+.bill-card-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 10px;min-width:0}
+.bill-info-row{display:flex;align-items:center;gap:6px;min-height:20px}
+.bill-info-row .info-label{color:var(--text-light);font-weight:700;font-size:11px;line-height:1.2;white-space:nowrap}
+.bill-info-row .info-value{color:var(--text-dark);font-weight:700;line-height:1.2;font-size:14px;display:block;min-width:0;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bill-info-row--id .info-value{color:var(--blue-600);font-weight:800}
+.bill-info-row--status .info-value{font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:#fff4e0;color:#c07000}
+.bill-info-row--status .info-value.done{background:#e0f5f1;color:#16a085}
+.bill-card-footer{display:grid;grid-template-columns:1fr;gap:6px}
+.bill-card-footer .btn{justify-content:center}
 .list-filter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .list-filter-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .list-filter-item{display:flex;flex-direction:column;gap:6px;min-width:0}
 .list-filter-item label{font-size:11px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.4px}
 .list-filter-item input::placeholder{color:#8aa9c2}
+#pageBillList .filter-row{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:14px;align-items:end;margin-bottom:0}
+#pageBillList .list-filter-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#pageBillList .list-filter-actions{grid-template-columns:1fr;gap:10px}
+#pageBillList .list-filter-actions .btn{width:100%;justify-content:center;min-height:42px}
 .list-pagination{display:none;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}
 .list-pagination button{padding:8px 12px;border:none;border-radius:8px;background:var(--blue-100);color:var(--blue-700);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
 .list-pagination button:disabled{opacity:0.45;cursor:not-allowed}
 .list-pagination .page-info{font-size:12px;font-weight:700;color:var(--text-mid)}
 .list-pagination .page-btn.active{background:var(--blue-600);color:var(--white)}
 .list-pagination .page-dots{font-size:12px;color:var(--text-light);font-weight:700}
+.bill-edit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bill-edit-grid .form-field{display:flex;flex-direction:column;gap:6px}
+.bill-edit-grid .form-field label{font-size:11px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.35px}
+.bill-edit-grid .form-field input,.bill-edit-grid .form-field select,.bill-edit-grid .form-field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px}
+.bill-edit-grid .form-field textarea{min-height:80px;resize:vertical}
+.bill-edit-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
 
 /* PUBLIC BILL VIEW */
 #publicBill{display:none;min-height:100vh;background:var(--blue-50)}
@@ -518,9 +564,12 @@ tbody tr:hover td{background:var(--blue-50)}
   #pageCreateBill .upload-area i{font-size:20px}
   #pageCreateBill .upload-area p{font-size:11px}
   #pageCreateBill .form-actions{position:static;background:transparent;padding-top:0;margin-top:14px}
-  .bills-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  #pageBillList .bills-grid{grid-template-columns:1fr;gap:12px}
+  #pageBillList .bill-card{grid-template-columns:1fr;gap:7px;padding:10px}
+  #pageBillList .bill-card-main{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #pageBillList .bill-card-footer{grid-template-columns:repeat(2,minmax(0,1fr));}
   #pageBillList .section-card{padding:14px;margin-bottom:12px}
-  #pageBillList .filter-row{margin-bottom:0}
+  #pageBillList .filter-row{display:flex;flex-direction:column;align-items:stretch;margin-bottom:0}
   #pageBillList .list-filter-grid{gap:8px}
   #pageBillList .filter-row input[type=date],
   #pageBillList .filter-row select{padding:8px 10px;font-size:12px}
@@ -556,27 +605,20 @@ tbody tr:hover td{background:var(--blue-50)}
   .section-card{padding:14px}
   #pageCreateBill .form-grid{grid-template-columns:1fr}
   #pageCreateBill .section-card{max-height:calc(100vh - 156px)}
-  #pageBillList .bills-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  #pageBillList .bill-card{padding:12px;display:flex;flex-direction:column;height:100%}
-  #pageBillList .bill-card-header{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:10px}
-  #pageBillList .bill-card-id{font-size:11px;line-height:1.2;word-break:break-all}
-  #pageBillList .bill-card-date{font-size:10px;line-height:1.2}
-  #pageBillList .bill-card-header > div:last-child{display:flex;align-items:center;justify-content:space-between;gap:6px}
-  #pageBillList .bill-card-header > div:last-child > div:last-child{margin-top:0 !important}
-  #pageBillList .bill-card-header .badge-pending,
-  #pageBillList .bill-card-header .badge-done{font-size:9px;padding:3px 6px;white-space:nowrap;line-height:1;display:inline-flex;align-items:center;justify-content:center}
-  #pageBillList .bill-card-body{gap:5px;margin-bottom:10px}
-  #pageBillList .bill-info-row{font-size:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:start}
-  #pageBillList .bill-info-row span:first-child{line-height:1.15}
-  #pageBillList .bill-info-row span:last-child{text-align:right;word-break:break-word;line-height:1.2}
-  #pageBillList .bill-amount{font-size:15px;line-height:1.1;word-break:break-all}
-  #pageBillList .bill-card-footer{gap:6px;padding-top:10px;margin-top:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  #pageBillList .bills-grid{grid-template-columns:1fr;gap:10px}
+  #pageBillList .bill-card{padding:12px;display:grid;height:auto}
+  #pageBillList .bill-card-main{gap:4px 6px}
+  #pageBillList .bill-info-row .info-label{font-size:10px}
+  #pageBillList .bill-info-row .info-value{font-size:13px;line-height:1.15}
+  #pageBillList .bill-info-row--status .info-value{font-size:10px;padding:3px 8px}
+  #pageBillList .bill-card-footer{gap:6px;padding-top:6px;margin-top:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
   #pageBillList .bill-card-footer .btn{padding:7px 6px;font-size:11px;justify-content:center;width:100%}
   #pageBillList .bill-card-footer .btn-xs{padding:6px 8px}
   #pageBillList .bill-card-footer .btn i{margin-right:2px}
   #pageBillList .badge{font-size:10px;padding:3px 8px}
   #pageBillList .list-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   #pageBillList .list-filter-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .bill-edit-grid{grid-template-columns:1fr}
   .list-pagination{justify-content:center}
   #pageDashboard .section-card h3{font-size:13px}
   #pageDashboard .chart-canvas-wrap{height:160px}
@@ -597,6 +639,10 @@ tbody tr:hover td{background:var(--blue-50)}
 
 <!-- ===== LOGIN PAGE ===== -->
 <div id="loginPage">
+  <div class="login-dongson login-dongson-left" aria-hidden="true"></div>
+  <div class="login-dongson login-dongson-right" aria-hidden="true"></div>
+  <div class="login-curve login-curve-one" aria-hidden="true"></div>
+  <div class="login-curve login-curve-two" aria-hidden="true"></div>
   <svg class="login-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
     <path fill="rgba(255,255,255,0.04)" d="M0,120 C240,180 480,60 720,120 C960,180 1200,60 1440,120 L1440,200 L0,200 Z"/>
     <path fill="rgba(255,255,255,0.03)" d="M0,160 C360,100 720,200 1080,140 C1260,110 1380,150 1440,130 L1440,200 L0,200 Z"/>
@@ -604,7 +650,7 @@ tbody tr:hover td{background:var(--blue-50)}
   <div class="login-container">
     <!-- LEFT: Image -->
     <div class="login-image-side">
-      <img src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2" alt="Tùng Vĩnh Hy">
+      <img src="./image/tungvinhhy.jpg" alt="Tùng Vĩnh Hy">
       <div class="login-image-overlay">
         <h2>Tùng Vĩnh Hy<br>Resort & Services</h2>
         <p>Hệ thống quản lý hóa đơn chuyên nghiệp</p>
@@ -665,7 +711,7 @@ tbody tr:hover td{background:var(--blue-50)}
         <div class="nav-section-label">Quản Lý</div>
         <div class="nav-item" data-page="createBill" onclick="showPage('createBill')"><i class="fa-solid fa-file-invoice"></i><span>Tạo hóa đơn</span></div>
         <div class="nav-item" data-page="billList" onclick="showPage('billList')"><i class="fa-solid fa-list-check"></i><span>Danh sách hóa đơn</span></div>
-        <div class="nav-item" data-page="booking" onclick="showPage('booking')"><i class="fa-solid fa-calendar-check"></i><span>Booking</span></div>
+        <div class="nav-item" data-page="booking" onclick="showPage('booking')"><i class="fa-solid fa-calendar-check"></i><span>Lịch Booking</span></div>
       </div>
       <div class="nav-section">
         <div class="nav-section-label">Hướng dẫn</div>
@@ -939,7 +985,7 @@ tbody tr:hover td{background:var(--blue-50)}
       <div class="page" id="pageGuide">
         <div class="guide-page">
           <div class="guide-hero">
-            <img src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2" alt="Tùng Vĩnh Hy — ảnh minh họa khu nghỉ" width="1200" height="600" loading="eager" decoding="async">
+            <img src="./image/tungvinhhy.jpg" alt="Tùng Vĩnh Hy — ảnh minh họa khu nghỉ" width="1200" height="600" loading="eager" decoding="async">
             <div class="guide-hero-overlay">
               <h2>Hướng dẫn A → Z</h2>
               <p>Ảnh + gạch đầu dòng ngắn gọn. Trên điện thoại: vuốt ngang thanh mục lục bên dưới để nhảy nhanh tới từng bước.</p>
@@ -1142,6 +1188,17 @@ tbody tr:hover td{background:var(--blue-50)}
   </div>
 </div>
 
+<!-- MODAL: Bill Edit -->
+<div class="modal-overlay" id="billEditModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-pen-to-square" style="color:var(--blue-500)"></i> Chỉnh sửa bill</h3>
+      <button class="modal-close" onclick="closeModal('billEditModal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="billEditContent"></div>
+  </div>
+</div>
+
 <!-- Onboarding: đồng ý / từ chối hướng dẫn -->
 <div class="onboarding-offer" id="onboardingOffer" aria-hidden="true">
   <div class="onboarding-offer-card">
@@ -1185,6 +1242,7 @@ let currentTab = 'stay';
 let imgData = {stay:[], canoe:[], ev:[]};
 let currentLinkBillId = null;
 let deleteBillId = null;
+let editingBillId = null;
 let listPage = 1;
 let audioCtx = null;
 let revenueChart = null;
@@ -2006,7 +2064,7 @@ function renderChart(){
 // BILL LIST
 // ============================================================
 function getListPageSize(){
-  return 2;
+  return 4;
 }
 
 function renderListPagination(totalItems, pageSize){
@@ -2069,7 +2127,6 @@ function renderBillList(resetPage=false){
     return true;
   });
   const typeMap = {stay:'Lưu Trú', canoe:'Cano', ev:'Xe Điện'};
-  const typeIcon = {stay:'fa-bed', canoe:'fa-sailboat', ev:'fa-bolt'};
   const grid = document.getElementById('billsGrid');
   const noBills = document.getElementById('noBills');
   const pageSize = getListPageSize();
@@ -2087,30 +2144,37 @@ function renderBillList(resetPage=false){
   const pageData = filtered.slice(start, start + pageSize);
   grid.innerHTML = pageData.map(b=>`
     <div class="bill-card">
-      <div class="bill-card-header">
-        <div>
-          <div class="bill-card-id">${b.id}</div>
-          <span class="badge badge-${b.type}"><i class="fa-solid ${typeIcon[b.type]}"></i> ${typeMap[b.type]}</span>
+      <div class="bill-card-main">
+        <div class="bill-info-row bill-info-row--id">
+          <span class="info-label">Mã đơn</span>
+          <span class="info-value">${b.id}</span>
         </div>
-        <div>
-          <div class="bill-card-date">${fmtDate(b.createdAt)}</div>
-          <div style="text-align:right;margin-top:4px"><span class="badge ${b.isDone?'badge-done':'badge-pending'}">${b.isDone?'Đã Xong':'Chờ Thanh Toán'}</span></div>
+        <div class="bill-info-row">
+          <span class="info-label">Loại hình</span>
+          <span class="info-value">${typeMap[b.type]}</span>
         </div>
-      </div>
-      <div class="bill-card-body">
-        <div class="bill-info-row"><span><i class="fa-solid fa-user"></i> Khách</span><span>${escapeHtml(b.customerName)||'---'}</span></div>
-        <div class="bill-info-row"><span><i class="fa-solid fa-phone"></i> SĐT</span><span>${escapeHtml(b.customerPhone)||'---'}</span></div>
-        ${b.type==='stay'?`<div class="bill-info-row"><span><i class="fa-solid fa-door-open"></i> Phòng</span><span>${b.room||'---'}</span></div>`:''}
-        <div class="bill-info-row"><span><i class="fa-solid fa-users"></i> Số người</span><span>${b.guests||'---'}</span></div>
-        <div class="bill-info-row"><span>Tổng Tiền</span><span class="bill-amount">${fmtMoneyCompact(b.total)}</span></div>
-        <div class="bill-info-row"><span>Còn Lại</span><span style="color:${b.remain>0?'#e67e22':'#16a085'};font-weight:700">${fmtMoneyCompact(b.remain)}</span></div>
-        ${b.images&&b.images.length?`<div class="bill-info-row"><span><i class="fa-solid fa-image"></i> Ảnh CK</span><span>${b.images.length} ảnh</span></div>`:''}
+        <div class="bill-info-row">
+          <span class="info-label">Ngày giờ</span>
+          <span class="info-value">${fmtDate(b.createdAt)}</span>
+        </div>
+        <div class="bill-info-row bill-info-row--status">
+          <span class="info-label">Trạng thái</span>
+          <span class="info-value ${b.isDone?'done':''}">${b.isDone?'Đã Xong':'Chờ Thanh Toán'}</span>
+        </div>
+        <div class="bill-info-row">
+          <span class="info-label">Tên</span>
+          <span class="info-value">${escapeHtml(b.customerName)||'---'}</span>
+        </div>
+        <div class="bill-info-row">
+          <span class="info-label">Số điện thoại</span>
+          <span class="info-value">${escapeHtml(b.customerPhone)||'---'}</span>
+        </div>
       </div>
       <div class="bill-card-footer">
         <button class="btn btn-primary btn-xs" onclick="openBillDetail('${b.id}')"><i class="fa-solid fa-eye"></i> Chi tiết</button>
         <button class="btn btn-secondary btn-xs" onclick="exportLink('${b.id}')"><i class="fa-solid fa-share-nodes"></i> Xuất Link</button>
         <button class="btn btn-success btn-xs" onclick="toggleDone('${b.id}')"><i class="fa-solid ${b.isDone?'fa-rotate-left':'fa-check'}"></i> ${b.isDone?'Hoàn tác':'Done'}</button>
-        <button class="btn btn-danger btn-xs" onclick="confirmDelete('${b.id}')"><i class="fa-solid fa-trash"></i> Xóa</button>
+        <button class="btn btn-secondary btn-xs" onclick="openEditBill('${b.id}')"><i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa</button>
       </div>
     </div>`).join('');
   renderListPagination(filtered.length, pageSize);
@@ -2192,6 +2256,151 @@ function openBillDetail(id){
     `:''}
   `;
   openModal('billDetailModal');
+}
+
+function toDateTimeLocalValue(val){
+  if(!val) return '';
+  const d = new Date(val);
+  if(Number.isNaN(d.getTime())) return '';
+  const yyyy = d.getFullYear();
+  const mm = pad2(d.getMonth()+1);
+  const dd = pad2(d.getDate());
+  const hh = pad2(d.getHours());
+  const mi = pad2(d.getMinutes());
+  return `${yyyy}-${mm}-${dd}T${hh}:${mi}`;
+}
+
+function updateEditBillRemain(){
+  const total = Number(document.getElementById('editBillTotal')?.value || 0);
+  const deposit = Number(document.getElementById('editBillDeposit')?.value || 0);
+  const done = document.getElementById('editBillDone')?.checked;
+  const remainEl = document.getElementById('editBillRemain');
+  if(!remainEl) return;
+  if(done){
+    remainEl.value = 0;
+    remainEl.setAttribute('readonly','readonly');
+    return;
+  }
+  remainEl.removeAttribute('readonly');
+  remainEl.value = Math.max(0, total - deposit);
+}
+
+function handleEditBillTypeChange(){
+  const type = document.getElementById('editBillType')?.value;
+  const roomWrap = document.getElementById('editBillRoomWrap');
+  if(!roomWrap) return;
+  roomWrap.style.display = type === 'stay' ? 'flex' : 'none';
+}
+
+function openEditBill(id){
+  const b = bills.find(x=>x.id===id);
+  if(!b){ showToast('Không tìm thấy bill!','error'); return; }
+  editingBillId = id;
+  const edit = document.getElementById('billEditContent');
+  edit.innerHTML = `
+    <div class="bill-edit-grid">
+      <div class="form-field">
+        <label for="editBillType">Loại bill</label>
+        <select id="editBillType" onchange="handleEditBillTypeChange()">
+          <option value="stay">Lưu Trú</option>
+          <option value="canoe">Cano</option>
+          <option value="ev">Xe Điện</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="editBillTime">Thời gian dịch vụ</label>
+        <input type="datetime-local" id="editBillTime">
+      </div>
+      <div class="form-field">
+        <label for="editBillName">Họ tên khách</label>
+        <input type="text" id="editBillName" placeholder="Nhập họ tên khách">
+      </div>
+      <div class="form-field">
+        <label for="editBillPhone">Số điện thoại</label>
+        <input type="tel" id="editBillPhone" placeholder="Nhập số điện thoại" inputmode="tel">
+      </div>
+      <div class="form-field" id="editBillRoomWrap">
+        <label for="editBillRoom">Số phòng</label>
+        <input type="text" id="editBillRoom" placeholder="VD: 101">
+      </div>
+      <div class="form-field">
+        <label for="editBillGuests">Số người</label>
+        <input type="number" min="1" id="editBillGuests" placeholder="Nhập số người">
+      </div>
+      <div class="form-field">
+        <label for="editBillTotal">Tổng tiền (đ)</label>
+        <input type="number" min="0" id="editBillTotal" oninput="updateEditBillRemain()">
+      </div>
+      <div class="form-field">
+        <label for="editBillDeposit">Đã cọc (đ)</label>
+        <input type="number" min="0" id="editBillDeposit" oninput="updateEditBillRemain()">
+      </div>
+      <div class="form-field">
+        <label for="editBillRemain">Còn lại (đ)</label>
+        <input type="number" min="0" id="editBillRemain">
+      </div>
+      <div class="form-field" style="justify-content:flex-end">
+        <label style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px">
+          <input type="checkbox" id="editBillDone" onchange="updateEditBillRemain()"> Đã hoàn tất thanh toán
+        </label>
+      </div>
+      <div class="form-field" style="grid-column:1/-1">
+        <label for="editBillNote">Ghi chú</label>
+        <textarea id="editBillNote" placeholder="Nhập ghi chú nếu có"></textarea>
+      </div>
+    </div>
+    <div class="bill-edit-actions">
+      <button class="btn btn-secondary" onclick="closeModal('billEditModal')">Hủy</button>
+      <button class="btn btn-primary" onclick="saveEditBill()"><i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi</button>
+    </div>
+  `;
+  document.getElementById('editBillType').value = b.type || 'stay';
+  document.getElementById('editBillTime').value = toDateTimeLocalValue(b.time || b.createdAt);
+  document.getElementById('editBillName').value = b.customerName || '';
+  document.getElementById('editBillPhone').value = b.customerPhone || '';
+  document.getElementById('editBillRoom').value = b.room || '';
+  document.getElementById('editBillGuests').value = b.guests || '';
+  document.getElementById('editBillTotal').value = Number(b.total || 0);
+  document.getElementById('editBillDeposit').value = Number(b.deposit || 0);
+  document.getElementById('editBillRemain').value = Number(b.remain || 0);
+  document.getElementById('editBillDone').checked = !!b.isDone;
+  document.getElementById('editBillNote').value = b.note || '';
+  handleEditBillTypeChange();
+  updateEditBillRemain();
+  openModal('billEditModal');
+}
+
+function saveEditBill(){
+  const b = bills.find(x=>x.id===editingBillId);
+  if(!b){ showToast('Không tìm thấy bill để lưu!','error'); return; }
+  const type = document.getElementById('editBillType').value;
+  const customerName = document.getElementById('editBillName').value.trim();
+  const customerPhone = document.getElementById('editBillPhone').value.trim();
+  if(!customerName || !customerPhone){
+    showToast('Vui lòng nhập họ tên và số điện thoại','error');
+    return;
+  }
+  const total = Math.max(0, Number(document.getElementById('editBillTotal').value || 0));
+  const deposit = Math.max(0, Number(document.getElementById('editBillDeposit').value || 0));
+  const done = !!document.getElementById('editBillDone').checked;
+  let remain = Math.max(0, Number(document.getElementById('editBillRemain').value || 0));
+  if(done) remain = 0;
+  b.type = type;
+  b.customerName = customerName;
+  b.customerPhone = customerPhone;
+  b.room = type === 'stay' ? document.getElementById('editBillRoom').value.trim() : '';
+  b.guests = Math.max(1, Number(document.getElementById('editBillGuests').value || 1));
+  b.time = document.getElementById('editBillTime').value || b.time;
+  b.total = total;
+  b.deposit = deposit;
+  b.remain = remain;
+  b.isDone = done || remain === 0;
+  b.note = document.getElementById('editBillNote').value.trim();
+  saveData();
+  renderBillList();
+  refreshDashboard();
+  closeModal('billEditModal');
+  showToast('Đã cập nhật bill thành công!','success');
 }
 
 // ============================================================
