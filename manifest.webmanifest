@@ -1,0 +1,19 @@
+{
+  "name": "Tùng Vĩnh Hy — Quản Lý Bill",
+  "short_name": "TVH Bill",
+  "description": "Hệ thống quản lý hóa đơn",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f0f8fd",
+  "theme_color": "#0d3a6e",
+  "icons": [
+    {
+      "src": "https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

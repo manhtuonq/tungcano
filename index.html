@@ -14,6 +14,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tùng Vĩnh Hy - Quản Lý Bill">
 <meta name="twitter:image" content="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2">
+<meta name="theme-color" content="#0d3a6e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="TVH Bill">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/jpeg" href="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -119,8 +124,8 @@ html{overflow-x:hidden}
 .btn-logout:hover{background:rgba(255,100,100,0.2);color:#ff9090}
 
 /* MAIN CONTENT */
-.main{margin-left:var(--sidebar);min-height:100vh;position:relative;transition:margin-left 0.3s;max-width:100%}
-.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(10,37,64,0.06)}
+.main{margin-left:var(--sidebar);min-height:100vh;position:relative;transition:margin-left 0.3s;max-width:100%;padding-top:64px}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:var(--sidebar);right:0;z-index:80;box-shadow:0 2px 8px rgba(10,37,64,0.06)}
 .topbar-left{display:flex;align-items:center;gap:14px}
 .hamburger{display:none;background:none;border:none;cursor:pointer;font-size:20px;color:var(--text-mid)}
 .page-title{font-size:18px;font-weight:800;color:var(--text-dark);line-height:1.1;letter-spacing:-0.2px;white-space:nowrap}
@@ -153,8 +158,28 @@ html{overflow-x:hidden}
 .section-card{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:24px}
 .section-card h3{font-size:15px;font-weight:800;color:var(--text-dark);margin-bottom:18px;display:flex;align-items:center;gap:8px}
 .section-card h3 i{color:var(--blue-500)}
-.dashboard-top-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px}
-.dashboard-top-grid > div{min-width:0}
+.dashboard-chart-only{max-width:100%}
+.dashboard-filter-top{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;box-shadow:var(--shadow)}
+.dashboard-filter-top .dash-scope-tabs{display:flex;flex-wrap:nowrap;gap:8px;margin-bottom:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:thin}
+.dashboard-filter-top .dash-scope-tabs::-webkit-scrollbar{height:4px}
+.dashboard-filter-top .dash-scope-tabs::-webkit-scrollbar-thumb{background:var(--blue-200);border-radius:2px}
+.dashboard-filter-top .dash-scope-btn{padding:10px 14px;border-radius:10px;border:2px solid var(--border);background:var(--white);color:var(--text-mid);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;flex:1 0 auto;min-width:max-content;justify-content:center;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.dashboard-filter-top .dash-scope-btn:hover{border-color:var(--blue-400);color:var(--blue-600)}
+.dashboard-filter-top .dash-scope-btn.active{background:var(--blue-600);border-color:var(--blue-600);color:#fff}
+.dashboard-period-hint{font-size:13px;font-weight:700;color:var(--blue-700);background:var(--blue-50);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:0 0 12px;line-height:1.45}
+.dashboard-period-hint .subhint{display:block;font-size:11px;font-weight:600;color:var(--text-light);margin-top:6px}
+.stat-grid .stat-info p.stat-sub{font-size:10px;color:var(--text-light);font-weight:600;margin-top:4px;line-height:1.2}
+.dash-export-layout{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.dash-export-row--2{display:grid;gap:12px 16px;align-items:end}
+.dash-export-layout.is-day-mode .dash-export-row--2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.dash-export-layout:not(.is-day-mode) .dash-export-row--2{grid-template-columns:minmax(0,1fr)}
+.dash-export-row--3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px;align-items:end}
+.dash-export-layout.is-day-mode .dash-export-row--3{display:none}
+.dash-export-card .form-field label{font-size:11px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.3px;margin-bottom:6px;display:block;line-height:1.25}
+.dash-export-card .form-field input,.dash-export-card .form-field select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:13px;min-width:0}
+.dash-export-hint{font-size:12px;color:var(--text-mid);font-weight:600;line-height:1.45;margin-bottom:14px}
+.dash-export-wrap{display:none}
+.dash-export-wrap.show{display:block}
 .chart-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .chart-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .chart-controls select{padding:7px 10px;border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-size:12px;background:var(--white);color:var(--text-dark)}
@@ -340,6 +365,83 @@ tbody tr:hover td{background:var(--blue-50)}
 .toast.success{background:#16a085}
 .toast.error{background:#e74c3c}
 
+/* Onboarding — lần đầu vào app */
+.onboarding-offer{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(10,37,64,0.55);backdrop-filter:blur(6px)}
+.onboarding-offer.open{display:flex}
+.onboarding-offer-card{max-width:440px;width:100%;background:var(--white);border-radius:20px;padding:28px 26px;box-shadow:0 24px 80px rgba(10,37,64,0.35);border:1px solid var(--border)}
+.onboarding-offer-card h3{font-size:20px;font-weight:800;color:var(--text-dark);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.onboarding-offer-card p{font-size:14px;color:var(--text-mid);line-height:1.55;font-weight:600;margin-bottom:22px}
+.onboarding-offer-actions{display:flex;flex-direction:column;gap:10px}
+.onboarding-offer-actions .btn{width:100%;justify-content:center;padding:12px 16px}
+
+/* Tour từng bước */
+.site-tour-root{position:fixed;inset:0;z-index:10001;display:none}
+.site-tour-root.open{display:block}
+.site-tour-dim{position:absolute;inset:0;z-index:1;background:rgba(10,37,64,0.45);backdrop-filter:blur(3px)}
+.site-tour-hole{position:absolute;z-index:2;border-radius:14px;border:3px solid var(--blue-500);box-shadow:0 0 0 4000px rgba(10,37,64,0.68);background:transparent;pointer-events:none;transition:top 0.35s ease,left 0.35s ease,width 0.35s ease,height 0.35s ease,opacity 0.25s ease;opacity:0}
+.site-tour-hole.visible{opacity:1}
+.site-tour-pop{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;width:min(420px,calc(100% - 32px));background:var(--white);border-radius:16px;padding:20px 20px 16px;box-shadow:0 16px 48px rgba(10,37,64,0.28);border:1px solid var(--border);z-index:10002;pointer-events:auto}
+.site-tour-pop.site-tour-pop-center{top:50%;bottom:auto;transform:translate(-50%,-50%)}
+.site-tour-pop h4{font-size:16px;font-weight:800;color:var(--text-dark);margin-bottom:8px}
+.site-tour-pop p{font-size:13px;color:var(--text-mid);line-height:1.55;font-weight:600;margin-bottom:14px}
+.site-tour-pop-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center}
+.site-tour-pop-actions .btn{padding:9px 14px;font-size:12px}
+.site-tour-step{font-size:11px;font-weight:700;color:var(--text-light);margin-right:auto}
+
+/* Hướng dẫn + Booking */
+.guide-page{max-width:960px;margin:0 auto}
+.guide-hero{position:relative;border-radius:var(--radius);overflow:hidden;margin-bottom:14px;background:var(--blue-800);box-shadow:var(--shadow)}
+.guide-hero picture,.guide-hero img{width:100%;display:block}
+.guide-hero img{height:clamp(140px,38vw,260px);object-fit:cover}
+.guide-hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,37,64,0.92) 0%,rgba(10,37,64,0.35) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:center;padding:16px 18px}
+.guide-hero-overlay h2{font-size:clamp(18px,4.5vw,26px);font-weight:800;color:#fff;margin-bottom:8px;line-height:1.2;max-width:20ch}
+.guide-hero-overlay p{font-size:13px;color:rgba(255,255,255,0.92);font-weight:600;max-width:min(36em,100%);line-height:1.5}
+.guide-lead{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin-bottom:14px;font-size:14px;color:var(--text-mid);font-weight:600;line-height:1.55;box-shadow:var(--shadow)}
+.guide-lead strong{color:var(--text-dark)}
+.guide-nav-chips{display:flex;gap:8px;overflow-x:auto;padding:4px 4px 16px;margin:0 -4px 4px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scrollbar-width:thin}
+.guide-nav-chips::-webkit-scrollbar{height:5px}
+.guide-nav-chips::-webkit-scrollbar-thumb{background:var(--blue-200);border-radius:3px}
+.guide-nav-chips a{flex-shrink:0;scroll-snap-align:start;padding:11px 15px;background:var(--white);border:1.5px solid var(--border);border-radius:999px;font-size:12px;font-weight:700;color:var(--blue-600);text-decoration:none;white-space:nowrap;transition:background 0.2s,border-color 0.2s;min-height:44px;display:inline-flex;align-items:center}
+.guide-nav-chips a:hover,.guide-nav-chips a:focus-visible{background:var(--blue-50);border-color:var(--blue-300);outline:none}
+.guide-cards{display:flex;flex-direction:column;gap:16px}
+.guide-card{display:grid;grid-template-columns:1fr;background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+@media(min-width:720px){
+  .guide-card{grid-template-columns:minmax(220px,34%) 1fr;align-items:stretch}
+}
+.guide-card-media{position:relative;min-height:150px;background:linear-gradient(145deg,var(--blue-100),var(--blue-50))}
+@media(max-width:719px){
+  .guide-card-media{aspect-ratio:16/10;max-height:210px}
+}
+.guide-card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.guide-card-media .guide-letter{position:absolute;top:12px;left:12px;width:42px;height:42px;border-radius:14px;background:var(--blue-500);color:#fff;font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(10,37,64,0.35)}
+.guide-card-body{padding:18px 16px 17px}
+@media(min-width:720px){
+  .guide-card-body{padding:22px 22px 20px}
+}
+.guide-card-body h3{font-size:clamp(16px,3.8vw,18px);font-weight:800;color:var(--text-dark);margin-bottom:10px;line-height:1.25}
+.guide-summary{font-size:14px;color:var(--text-mid);font-weight:600;line-height:1.55;margin-bottom:12px}
+.guide-bullets{margin:0 0 14px;padding:0;list-style:none}
+.guide-bullets li{font-size:13px;color:var(--text-mid);font-weight:600;line-height:1.5;padding:8px 0 8px 30px;position:relative;border-bottom:1px dashed rgba(197,223,240,0.85)}
+.guide-bullets li:last-child{border-bottom:none;padding-bottom:0}
+.guide-bullets li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;left:0;top:9px;color:var(--blue-500);font-size:12px;opacity:0.9}
+.guide-card-actions{display:flex;flex-direction:column;gap:10px}
+@media(min-width:480px){
+  .guide-card-actions{flex-direction:row;flex-wrap:wrap;align-items:flex-start}
+}
+.guide-yt{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;background:#e62117;color:#fff!important;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity 0.2s;min-height:46px;width:100%}
+@media(min-width:480px){
+  .guide-yt{width:auto;max-width:100%;min-width:min(260px,100%)}
+}
+.guide-yt i{font-size:17px;flex-shrink:0}
+.guide-yt:hover{opacity:0.93;color:#fff}
+.guide-tip{font-size:12px;color:var(--text-light);font-weight:600;line-height:1.45;margin:0}
+[id^="guide-"]{scroll-margin-top:92px}
+@media(max-width:768px){
+  [id^="guide-"]{scroll-margin-top:78px}
+}
+.booking-placeholder{text-align:center;padding:48px 24px;color:var(--text-mid);font-weight:600;font-size:14px}
+.booking-placeholder i{font-size:42px;color:var(--blue-300);display:block;margin-bottom:14px}
+
 /* SIDEBAR OVERLAY MOBILE */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(10,37,64,0.4);z-index:99}
 
@@ -354,15 +456,18 @@ tbody tr:hover td{background:var(--blue-50)}
   .sidebar.open{transform:translateX(0)}
   .sidebar-overlay{display:none}
   .sidebar-overlay.open{display:block}
-  .main{margin-left:0}
+  .main{margin-left:0;padding-top:58px}
   .hamburger{display:flex}
-  .topbar{height:58px;padding:0 14px}
+  .topbar{height:58px;padding:0 14px;left:0}
   .topbar-left{gap:8px;min-width:0;flex:1}
   .topbar-right{gap:8px;flex-shrink:0;max-width:56%}
   .page-title{font-size:16px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .topbar-date{font-size:11px;padding:5px 10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .avatar{width:34px;height:34px;font-size:13px}
   .content{padding:12px}
+  .dashboard-filter-top{padding:14px;margin-bottom:14px}
+  .dashboard-period-hint{font-size:12px;padding:9px 12px}
+  .dashboard-filter-top .dash-scope-btn{font-size:12px;padding:9px 12px}
   .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
   .stat-card{padding:14px 12px;gap:10px;min-width:0}
   .stat-icon{width:44px;height:44px}
@@ -370,7 +475,6 @@ tbody tr:hover td{background:var(--blue-50)}
   .stat-info{min-width:0}
   .stat-info h3{font-size:20px}
   .stat-info p{font-size:11px;line-height:1.25;word-break:break-word}
-  .dashboard-top-grid{grid-template-columns:1fr}
   .section-card{padding:16px}
   .section-card h3{font-size:14px;margin-bottom:14px}
   .chart-canvas-wrap{height:180px}
@@ -434,6 +538,10 @@ tbody tr:hover td{background:var(--blue-50)}
   .pub-dl-btn,.pub-home-btn{padding:11px;font-size:12px}
   .pub-images{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
   .pub-images img{height:88px}
+}
+@media(max-width:560px){
+  .dash-export-layout.is-day-mode .dash-export-row--2,
+  .dash-export-row--3{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   .topbar{padding:0 10px}
@@ -545,15 +653,20 @@ tbody tr:hover td{background:var(--blue-50)}
         <div class="b-text"><h2>Tùng Vĩnh Hy</h2><p>Quản Lý Bill</p></div>
       </div>
     </div>
-    <nav class="sidebar-nav">
+    <nav class="sidebar-nav" id="tourSidebarNav">
       <div class="nav-section">
-        <div class="nav-section-label">Tổng Quan</div>
-        <div class="nav-item active" onclick="showPage('dashboard')"><i class="fa-solid fa-chart-line"></i><span>Tổng Quan</span></div>
+        <div class="nav-section-label">Doanh Thu</div>
+        <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')"><i class="fa-solid fa-chart-line"></i><span>Doanh Thu</span></div>
       </div>
       <div class="nav-section">
         <div class="nav-section-label">Quản Lý</div>
-        <div class="nav-item" onclick="showPage('createBill')"><i class="fa-solid fa-file-invoice"></i><span>Tạo Bill Mới</span></div>
-        <div class="nav-item" onclick="showPage('billList')"><i class="fa-solid fa-list-check"></i><span>Danh Sách Bill</span></div>
+        <div class="nav-item" data-page="createBill" onclick="showPage('createBill')"><i class="fa-solid fa-file-invoice"></i><span>Tạo hóa đơn</span></div>
+        <div class="nav-item" data-page="billList" onclick="showPage('billList')"><i class="fa-solid fa-list-check"></i><span>Danh sách hóa đơn</span></div>
+        <div class="nav-item" data-page="booking" onclick="showPage('booking')"><i class="fa-solid fa-calendar-check"></i><span>Booking</span></div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">Hướng dẫn</div>
+        <div class="nav-item" data-page="guide" onclick="showPage('guide')"><i class="fa-solid fa-book-open"></i><span>Hướng dẫn sử dụng</span></div>
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -566,7 +679,7 @@ tbody tr:hover td{background:var(--blue-50)}
     <div class="topbar">
       <div class="topbar-left">
         <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
-        <div class="page-title" id="pageTitle">Tổng Quan</div>
+        <div class="page-title" id="pageTitle">Doanh Thu</div>
       </div>
       <div class="topbar-right">
         <span class="topbar-date" id="todayDate"></span>
@@ -577,92 +690,70 @@ tbody tr:hover td{background:var(--blue-50)}
 
       <!-- DASHBOARD PAGE -->
       <div class="page active" id="pageDashboard">
-        <div class="stat-grid" id="statsGrid">
-          <div class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-file-invoice-dollar"></i></div><div class="stat-info"><h3 id="s1">0</h3><p>Tổng Bill</p></div></div>
-          <div class="stat-card"><div class="stat-icon teal"><i class="fa-solid fa-circle-check"></i></div><div class="stat-info"><h3 id="s2">0</h3><p>Đã Hoàn Thành</p></div></div>
-          <div class="stat-card"><div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div><div class="stat-info"><h3 id="s3">0</h3><p>Chưa Hoàn Thành</p></div></div>
-          <div class="stat-card"><div class="stat-icon rose"><i class="fa-solid fa-coins"></i></div><div class="stat-info"><h3 id="s4">0đ</h3><p>Tổng Doanh Thu</p></div></div>
+        <div class="dashboard-filter-top" id="dashboardFilterBar">
+          <div class="dash-scope-tabs" role="tablist" aria-label="Chọn kỳ xem doanh thu">
+            <button type="button" class="dash-scope-btn" data-scope="week" onclick="setDashboardScope('week')"><i class="fa-solid fa-calendar-week"></i> Tuần này</button>
+            <button type="button" class="dash-scope-btn active" data-scope="month" onclick="setDashboardScope('month')"><i class="fa-solid fa-calendar"></i> Tháng này</button>
+            <button type="button" class="dash-scope-btn" data-scope="year" onclick="setDashboardScope('year')"><i class="fa-solid fa-calendar-days"></i> Năm nay</button>
+          </div>
+          <p class="dashboard-period-hint" id="dashboardPeriodHint">Đang tải kỳ…</p>
         </div>
-        <div class="dashboard-top-grid">
-          <div>
-            <div class="section-card">
-              <div class="chart-header">
-                <h3 style="margin-bottom:0"><i class="fa-solid fa-chart-line"></i> Biểu Đồ Doanh Thu</h3>
-                <div class="chart-controls">
-                  <select id="chartPeriod" onchange="renderChart()">
-                    <option value="week">Tuần</option>
-                    <option value="month">Tháng</option>
-                    <option value="year">Năm</option>
-                  </select>
-                </div>
-              </div>
-              <div class="chart-note">So sánh dữ liệu kỳ hiện tại và kỳ trước.</div>
-              <div class="chart-canvas-wrap"><canvas id="revenueChart"></canvas></div>
+        <div class="stat-grid" id="tourStats">
+          <div class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-file-invoice-dollar"></i></div><div class="stat-info"><h3 id="s1">0</h3><p>Tổng hóa đơn</p><p class="stat-sub" id="s1sub">trong kỳ đang xem</p></div></div>
+          <div class="stat-card"><div class="stat-icon teal"><i class="fa-solid fa-circle-check"></i></div><div class="stat-info"><h3 id="s2">0</h3><p>Đã hoàn thành</p><p class="stat-sub" id="s2sub">Thanh toán đủ</p></div></div>
+          <div class="stat-card"><div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div><div class="stat-info"><h3 id="s3">0</h3><p>Chưa hoàn thành</p><p class="stat-sub" id="s3sub">Còn cọc / nợ</p></div></div>
+          <div class="stat-card"><div class="stat-icon rose"><i class="fa-solid fa-coins"></i></div><div class="stat-info"><h3 id="s4">0đ</h3><p>Tổng doanh thu</p><p class="stat-sub" id="s4sub">theo ngày tạo bill</p></div></div>
+        </div>
+        <div class="dashboard-chart-only">
+          <div class="section-card" id="tourChartCard">
+            <div class="chart-header">
+              <h3 style="margin-bottom:0"><i class="fa-solid fa-chart-line"></i> Biểu đồ doanh thu</h3>
             </div>
-            <div class="section-card">
-              <h3><i class="fa-solid fa-table-list"></i> Bill Gần Đây</h3>
-              <div class="filter-row" style="margin-bottom:14px">
-                <div class="dashboard-filter-grid">
-                  <div class="dashboard-filter-item">
-                    <label for="filterFrom">Từ ngày</label>
-                    <input type="date" id="filterFrom" onchange="refreshDashboard(true)">
-                  </div>
-                  <div class="dashboard-filter-item">
-                    <label for="filterTo">Đến ngày</label>
-                    <input type="date" id="filterTo" onchange="refreshDashboard(true)">
-                  </div>
-                  <div class="dashboard-filter-item">
-                    <label for="filterType">Loại bill</label>
-                    <select id="filterType" onchange="refreshDashboard(true)">
-                      <option value="">Tất cả loại</option>
-                      <option value="stay">Lưu Trú</option>
-                      <option value="canoe">Cano</option>
-                      <option value="ev">Xe Điện</option>
-                    </select>
-                  </div>
-                  <div class="dashboard-filter-item">
-                    <label for="filterStatus">Trạng thái</label>
-                    <select id="filterStatus" onchange="refreshDashboard(true)">
-                      <option value="">Tất cả trạng thái</option>
-                      <option value="done">Đã xong</option>
-                      <option value="pending">Chưa xong</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead><tr><th>#Bill</th><th>Loại</th><th>Ngày</th><th>Tổng Tiền</th><th>Còn Lại</th><th>Trạng Thái</th><th></th></tr></thead>
-                  <tbody id="dashTableBody"></tbody>
-                </table>
-              </div>
-              <div class="dash-pagination" id="dashPagination"></div>
-            </div>
+            <div class="chart-note" id="chartCompareNote">Đường đậm: kỳ đang chọn (Tuần này / Tháng này / Năm nay). Đường nhạt: cùng cấu trúc thời gian của kỳ trước (tuần trước / tháng trước / năm trước).</div>
+            <div class="chart-canvas-wrap"><canvas id="revenueChart"></canvas></div>
           </div>
-          <div>
-            <div class="section-card">
-              <h3><i class="fa-solid fa-calendar-days"></i> Lịch Bill</h3>
-              <div class="cal-header">
-                <span class="cal-month" id="calMonthLabel"></span>
-                <div class="cal-nav">
-                  <button onclick="calPrev()"><i class="fa-solid fa-chevron-left"></i></button>
-                  <button onclick="calNext()"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
+        </div>
+        <div class="section-card dash-export-card">
+          <h3><i class="fa-solid fa-file-excel" style="color:#217346"></i> Xuất báo cáo Excel</h3>
+          <p class="dash-export-hint">Chọn <strong>loại kỳ</strong> và ngày / tuần / tháng / năm cần xuất. File tải về dùng Excel hoặc WPS mở — có <strong>bảng tổng hợp</strong> và <strong>bảng chi tiết từng hóa đơn</strong>.</p>
+          <div class="dash-export-layout is-day-mode">
+            <div class="dash-export-row dash-export-row--2">
+              <div class="form-field">
+                <label for="dashExportKind">Loại xuất</label>
+                <select id="dashExportKind" onchange="toggleDashExportInputs()">
+                  <option value="day">Theo ngày</option>
+                  <option value="week">Theo tuần</option>
+                  <option value="month">Theo tháng</option>
+                  <option value="year">Theo năm</option>
+                </select>
               </div>
-              <div class="cal-grid" id="calGrid"></div>
-              <div class="cal-legend" style="margin-top:14px">
-                <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#cc2e2e"></div>1-2 bill</div>
-                <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#b7791f"></div>3-5 bill</div>
-                <div class="cal-legend-item"><div class="cal-legend-dot" style="background:#22863a"></div>Trên 6 bill</div>
+              <div class="form-field dash-export-wrap show" id="dashExportDayWrap">
+                <label for="dashExportDay">Chọn ngày</label>
+                <input type="date" id="dashExportDay">
+              </div>
+            </div>
+            <div class="dash-export-row dash-export-row--3">
+              <div class="form-field dash-export-wrap" id="dashExportWeekWrap">
+                <label for="dashExportWeekAnchor">Chọn một ngày trong tuần cần xuất</label>
+                <input type="date" id="dashExportWeekAnchor">
+              </div>
+              <div class="form-field dash-export-wrap" id="dashExportMonthWrap">
+                <label for="dashExportMonth">Tháng</label>
+                <input type="month" id="dashExportMonth">
+              </div>
+              <div class="form-field dash-export-wrap" id="dashExportYearWrap">
+                <label for="dashExportYear">Năm</label>
+                <input type="number" id="dashExportYear" min="2000" max="2100" step="1" placeholder="VD: 2026">
               </div>
             </div>
           </div>
+          <button type="button" class="btn btn-primary" onclick="runDashboardExport()"><i class="fa-solid fa-download"></i> Tải file Excel (.xls)</button>
         </div>
       </div>
 
       <!-- CREATE BILL PAGE -->
       <div class="page" id="pageCreateBill">
-        <div class="bill-tabs">
+        <div class="bill-tabs" id="tourBillTabs">
           <button class="bill-tab active" onclick="switchTab('stay')"><i class="fa-solid fa-bed"></i> Lưu Trú</button>
           <button class="bill-tab" onclick="switchTab('canoe')"><i class="fa-solid fa-sailboat"></i> Cano</button>
           <button class="bill-tab" onclick="switchTab('ev')"><i class="fa-solid fa-bolt"></i> Xe Điện</button>
@@ -698,7 +789,7 @@ tbody tr:hover td{background:var(--blue-50)}
               </div>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary" onclick="saveBill('stay')"><i class="fa-solid fa-floppy-disk"></i> Tạo Bill</button>
+              <button class="btn btn-primary" onclick="saveBill('stay')"><i class="fa-solid fa-floppy-disk"></i> Tạo hóa đơn</button>
               <button class="btn btn-secondary" onclick="clearForm('stay')"><i class="fa-solid fa-rotate-left"></i> Làm Mới</button>
             </div>
           </div>
@@ -734,7 +825,7 @@ tbody tr:hover td{background:var(--blue-50)}
               </div>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary" onclick="saveBill('canoe')"><i class="fa-solid fa-floppy-disk"></i> Tạo Bill</button>
+              <button class="btn btn-primary" onclick="saveBill('canoe')"><i class="fa-solid fa-floppy-disk"></i> Tạo hóa đơn</button>
               <button class="btn btn-secondary" onclick="clearForm('canoe')"><i class="fa-solid fa-rotate-left"></i> Làm Mới</button>
             </div>
           </div>
@@ -770,7 +861,7 @@ tbody tr:hover td{background:var(--blue-50)}
               </div>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary" onclick="saveBill('ev')"><i class="fa-solid fa-floppy-disk"></i> Tạo Bill</button>
+              <button class="btn btn-primary" onclick="saveBill('ev')"><i class="fa-solid fa-floppy-disk"></i> Tạo hóa đơn</button>
               <button class="btn btn-secondary" onclick="clearForm('ev')"><i class="fa-solid fa-rotate-left"></i> Làm Mới</button>
             </div>
           </div>
@@ -830,6 +921,157 @@ tbody tr:hover td{background:var(--blue-50)}
         </div>
       </div>
 
+      <!-- BOOKING PAGE -->
+      <div class="page" id="pageBooking">
+        <div class="section-card">
+          <h3><i class="fa-solid fa-calendar-check"></i> Booking</h3>
+          <div class="booking-placeholder">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <p>Mục Booking đang được phát triển. Sau này bạn có thể quản lý đặt phòng / tour / lịch dịch vụ tại đây.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HƯỚNG DẪN -->
+      <div class="page" id="pageGuide">
+        <div class="guide-page">
+          <div class="guide-hero">
+            <img src="https://scontent.fsgn2-10.fna.fbcdn.net/v/t39.30808-6/624882992_1212551104347471_3498530115044260946_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeGEG7EbjQ3aQyskUnyX7j2kqccD014vUJCpxwPTXi9QkM3Ku72r-hHJJf8rX2tubWN1L3FBQ8Tj0XVBrDn_FhSg&_nc_ohc=Za3eeqnQmZ0Q7kNvwHcZ8Ng&_nc_oc=AdpUdbb-74RhmynnsSiZ13z3gvCFEdj4Y0_mX4K6CsaAcnkC0hjYMltg5HA3zMHhMJyfS9ncYTzdHf3YM7i7HBdC&_nc_zt=23&_nc_ht=scontent.fsgn2-10.fna&_nc_gid=gpBsYERg_RKt5OxfWIOD3w&_nc_ss=7b2a8&oh=00_Af3tLCGiOF7D3kLzX6AmPdrlwV3FfdbvWs1X2sbSgtxwew&oe=69F93BB2" alt="Tùng Vĩnh Hy — ảnh minh họa khu nghỉ" width="1200" height="600" loading="eager" decoding="async">
+            <div class="guide-hero-overlay">
+              <h2>Hướng dẫn A → Z</h2>
+              <p>Ảnh + gạch đầu dòng ngắn gọn. Trên điện thoại: vuốt ngang thanh mục lục bên dưới để nhảy nhanh tới từng bước.</p>
+            </div>
+          </div>
+          <div class="guide-lead">
+            <strong>Đọc nhanh:</strong> mỗi mục có <strong>ảnh minh họa</strong> (ý tưởng từng thao tác), <strong>3 gạch đầu dòng</strong> và nút mở video YouTube. Khi có video riêng của bạn, chỉnh link trong file <code style="background:var(--blue-50);padding:2px 8px;border-radius:6px;font-size:12px">index.html</code> phần Hướng dẫn.
+          </div>
+          <nav class="guide-nav-chips" aria-label="Mục lục nhanh">
+            <a href="#guide-a">A · Đăng nhập</a>
+            <a href="#guide-b">B · Doanh thu</a>
+            <a href="#guide-c">C · Tạo HĐ</a>
+            <a href="#guide-d">D · Danh sách</a>
+            <a href="#guide-e">E · Link &amp; ảnh</a>
+            <a href="#guide-f">F · Booking</a>
+          </nav>
+          <div class="guide-cards">
+            <article class="guide-card" id="guide-a">
+              <div class="guide-card-media">
+                <span class="guide-letter" aria-hidden="true">A</span>
+                <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="Minh họa: đăng nhập an toàn trên điện thoại" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="guide-card-body">
+                <h3>Đăng nhập &amp; ghi nhớ</h3>
+                <p class="guide-summary">Bước đầu để vào hệ thống — dữ liệu hóa đơn được lưu trên trình duyệt của bạn sau khi đăng nhập.</p>
+                <ul class="guide-bullets">
+                  <li>Nhập đúng tên đăng nhập và mật khẩu được cấp.</li>
+                  <li>Tích &quot;Ghi nhớ đăng nhập&quot; nếu chỉ bạn dùng máy — lần sau vào nhanh hơn.</li>
+                  <li>Đổi mật khẩu định kỳ; không chia sẻ tài khoản cho khách.</li>
+                </ul>
+                <div class="guide-card-actions">
+                  <a class="guide-yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=h%C6%B0%E1%BB%9Bng+d%E1%BA%ABn+%C4%91%C4%83ng+nh%E1%BA%ADp+website"><i class="fa-brands fa-youtube"></i> Xem video · Đăng nhập</a>
+                </div>
+                <p class="guide-tip"><i class="fa-solid fa-mobile-screen-button" style="color:var(--blue-500)"></i> Trên màn hình nhỏ, form đăng nhập xếp dọc — cuộn xuống nếu không thấy nút.</p>
+              </div>
+            </article>
+            <article class="guide-card" id="guide-b">
+              <div class="guide-card-media">
+                <span class="guide-letter">B</span>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="Minh họa: biểu đồ và thống kê doanh thu" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="guide-card-body">
+                <h3>Doanh Thu — thống kê &amp; biểu đồ</h3>
+                <p class="guide-summary">Màn hình tổng quan sau khi đăng nhập: số liệu nhanh và đường biểu đồ so kỳ hiện tại với kỳ trước.</p>
+                <ul class="guide-bullets">
+                  <li>Bốn thẻ: tổng hóa đơn, đã hoàn thành, chưa hoàn thành, tổng doanh thu.</li>
+                  <li>Chọn Tuần / Tháng / Năm để đổi độ chi tiết biểu đồ.</li>
+                  <li>Đường đậm = kỳ đang xem; đường nhạt = kỳ trước để so sánh.</li>
+                </ul>
+                <div class="guide-card-actions">
+                  <a class="guide-yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dashboard+doanh+thu"><i class="fa-brands fa-youtube"></i> Xem video · Doanh thu &amp; biểu đồ</a>
+                </div>
+                <p class="guide-tip"><i class="fa-solid fa-chart-line" style="color:var(--blue-500)"></i> Cuộn dọc trang Doanh thu: thẻ số nằm trên, biểu đồ nằm dưới — dễ xem trên một cột.</p>
+              </div>
+            </article>
+            <article class="guide-card" id="guide-c">
+              <div class="guide-card-media">
+                <span class="guide-letter">C</span>
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="Minh họa: nhập thông tin hóa đơn dịch vụ" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="guide-card-body">
+                <h3>Tạo hóa đơn (Lưu trú / Cano / Xe điện)</h3>
+                <p class="guide-summary">Mỗi loại dịch vụ có một tab riêng; thông tin bắt buộc là họ tên và SĐT khách.</p>
+                <ul class="guide-bullets">
+                  <li>Chọn đúng tab trước khi nhập — tránh nhầm loại bill.</li>
+                  <li>Nhập số tiền; phần còn lại có thể tự tính từ tổng và cọc.</li>
+                  <li>Đính ảnh chuyển khoản giúp đối soát nhanh sau này.</li>
+                </ul>
+                <div class="guide-card-actions">
+                  <a class="guide-yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=t%E1%BA%A1o+h%C3%B3a+%C4%91%C6%A1n+l%C6%B0u+tr%C3%BA"><i class="fa-brands fa-youtube"></i> Xem video · Tạo hóa đơn chi tiết</a>
+                </div>
+                <p class="guide-tip"><i class="fa-solid fa-layer-group" style="color:var(--blue-500)"></i> Trên mobile, ba tab (Lưu trú — Cano — Xe điện) có thể xếp nhiều hàng — luôn kiểm tra tab đang sáng trước khi lưu.</p>
+              </div>
+            </article>
+            <article class="guide-card" id="guide-d">
+              <div class="guide-card-media">
+                <span class="guide-letter">D</span>
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="Minh họa: danh sách và lọc hồ sơ" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="guide-card-body">
+                <h3>Danh sách hóa đơn — lọc &amp; thao tác</h3>
+                <p class="guide-summary">Tìm bill theo thời gian, loại, trạng thái thanh toán, hoặc tên / SĐT khách.</p>
+                <ul class="guide-bullets">
+                  <li>Dùng &quot;Tìm kiếm&quot; sau khi chọn bộ lọc — bảng lưới card gọn trên điện thoại.</li>
+                  <li>Chi tiết, xuất link, Done / Xóa nằm trên từng thẻ bill.</li>
+                  <li>Phân trang phía dưới khi có nhiều bill — chạm số trang để chuyển.</li>
+                </ul>
+                <div class="guide-card-actions">
+                  <a class="guide-yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=danh+s%C3%A1ch+h%C3%B3a+%C4%91%C6%A1n"><i class="fa-brands fa-youtube"></i> Xem video · Danh sách &amp; lọc</a>
+                </div>
+                <p class="guide-tip"><i class="fa-solid fa-filter" style="color:var(--blue-500)"></i> Ô lọc xếp lưới 2 cột trên mobile — vuốt xuống để thấy đủ trường trước khi bấm Tìm kiếm.</p>
+              </div>
+            </article>
+            <article class="guide-card" id="guide-e">
+              <div class="guide-card-media">
+                <span class="guide-letter">E</span>
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="Minh họa: chia sẻ link và xem trên điện thoại" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="guide-card-body">
+                <h3>Link công khai &amp; tải ảnh hóa đơn</h3>
+                <p class="guide-summary">Khách mở link không cần tài khoản; có thể lưu ảnh PNG bill để gửi Zalo hoặc in.</p>
+                <ul class="guide-bullets">
+                  <li>Sao chép link từ ô trong cửa sổ &quot;Xuất link&quot; hoặc sau khi tạo bill.</li>
+                  <li>Trang bill khách: nút tải ảnh thường nằm gần cuối — cuộn trên mobile.</li>
+                  <li>Kiểm tra lại tổng tiền và cọc trước khi gửi cho khách.</li>
+                </ul>
+                <div class="guide-card-actions">
+                  <a class="guide-yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=xu%E1%BA%A5t+link+bill"><i class="fa-brands fa-youtube"></i> Xem video · Xuất link &amp; tải ảnh</a>
+                </div>
+                <p class="guide-tip"><i class="fa-solid fa-link" style="color:var(--blue-500)"></i> Giữ link trong clipboard hoặc gửi trực tiếp từ nút &quot;Xem trước&quot; sau khi tạo.</p>
+              </div>
+            </article>
+            <article class="guide-card" id="guide-f">
+              <div class="guide-card-media">
+                <span class="guide-letter">F</span>
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="Minh họa: đặt phòng và lịch dịch vụ" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="guide-card-body">
+                <h3>Booking — đang mở rộng</h3>
+                <p class="guide-summary">Khu vực dành cho đặt phòng / tour / lịch dịch vụ — sẽ bổ sung dần trong các phiên bản sau.</p>
+                <ul class="guide-bullets">
+                  <li>Hiện tại bạn có thể ghi nhận thông tin qua &quot;Tạo hóa đơn&quot; như bình thường.</li>
+                  <li>Khi mục Booking hoàn thiện, video hướng dẫn sẽ cập nhật tại đây.</li>
+                  <li>Theo dõi thông báo từ admin khi tính năng mới được bật.</li>
+                </ul>
+                <div class="guide-card-actions">
+                  <a class="guide-yt" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=booking+resort"><i class="fa-brands fa-youtube"></i> Video placeholder · Booking</a>
+                </div>
+                <p class="guide-tip"><i class="fa-solid fa-calendar-days" style="color:var(--blue-500)"></i> Ảnh minh họa gợi ý quy trình đặt chỗ — không phải ảnh chụp màn hình thật của website.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -856,7 +1098,7 @@ tbody tr:hover td{background:var(--blue-50)}
 <div class="modal-overlay" id="createBillModal">
   <div class="modal">
     <div class="modal-header">
-      <h3><i class="fa-solid fa-circle-check" style="color:#16a085"></i> Tạo Bill Thành Công</h3>
+      <h3><i class="fa-solid fa-circle-check" style="color:#16a085"></i> Tạo hóa đơn thành công</h3>
       <button class="modal-close" onclick="closeModal('createBillModal')"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <p style="font-size:13px;color:var(--text-light);font-weight:600">Bạn có muốn xem bill vừa tạo không? Có thể sao chép link và gửi cho khách ngay.</p>
@@ -897,14 +1139,31 @@ tbody tr:hover td{background:var(--blue-50)}
   </div>
 </div>
 
-<!-- MODAL: Calendar Day Summary -->
-<div class="modal-overlay" id="daySummaryModal">
-  <div class="modal">
-    <div class="modal-header">
-      <h3><i class="fa-solid fa-calendar-day" style="color:var(--blue-500)"></i> Chi Tiết Bill Theo Ngày</h3>
-      <button class="modal-close" onclick="closeModal('daySummaryModal')"><i class="fa-solid fa-xmark"></i></button>
+<!-- Onboarding: đồng ý / từ chối hướng dẫn -->
+<div class="onboarding-offer" id="onboardingOffer" aria-hidden="true">
+  <div class="onboarding-offer-card">
+    <h3><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--blue-500)"></i> Hướng dẫn sử dụng</h3>
+    <p>Bạn có muốn xem <strong>hướng dẫn từng bước</strong> (giống game) — màn hình mờ, hệ thống sẽ đưa bạn qua từng mục và giải thích tác dụng? Bạn có thể bỏ qua bất cứ lúc nào.</p>
+    <div class="onboarding-offer-actions">
+      <button type="button" class="btn btn-primary" onclick="acceptOnboardingTour()"><i class="fa-solid fa-check"></i> Đồng ý — bắt đầu hướng dẫn</button>
+      <button type="button" class="btn btn-secondary" onclick="refuseOnboardingTour()"><i class="fa-solid fa-xmark"></i> Từ chối</button>
     </div>
-    <div id="daySummaryContent"></div>
+  </div>
+</div>
+
+<!-- Tour từng bước -->
+<div class="site-tour-root" id="siteTourRoot" aria-hidden="true">
+  <div class="site-tour-dim"></div>
+  <div class="site-tour-hole" id="siteTourHole"></div>
+  <div class="site-tour-pop" id="siteTourPop">
+    <span class="site-tour-step" id="siteTourStepLabel"></span>
+    <h4 id="siteTourTitle"></h4>
+    <p id="siteTourBody"></p>
+    <div class="site-tour-pop-actions">
+      <button type="button" class="btn btn-secondary btn-sm" onclick="siteTourPrev()"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
+      <button type="button" class="btn btn-primary btn-sm" id="siteTourNextBtn" onclick="siteTourNext()">Tiếp theo <i class="fa-solid fa-arrow-right"></i></button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="siteTourFinish()">Bỏ qua tour</button>
+    </div>
   </div>
 </div>
 
@@ -918,13 +1177,12 @@ tbody tr:hover td{background:var(--blue-50)}
 let bills = [];
 let currentTab = 'stay';
 let imgData = {stay:[], canoe:[], ev:[]};
-let calYear, calMonth;
 let currentLinkBillId = null;
 let deleteBillId = null;
 let listPage = 1;
 let audioCtx = null;
 let revenueChart = null;
-let dashPage = 1;
+let siteTourIndex = 0;
 
 const USERS = [{u:'admin', p:'admin123'}, {u:'tungvinhhy', p:'123zxc123'}];
 
@@ -935,13 +1193,15 @@ window.onload = function(){
   setTodayDate();
   loadData();
   checkAutoLogin();
-  setCalToday();
   checkPublicView();
 };
 
 window.addEventListener('resize', ()=>{
   if(document.getElementById('pageBillList')?.classList.contains('active')){
     renderBillList();
+  }
+  if(document.getElementById('siteTourRoot')?.classList.contains('open')){
+    applySiteTourStep();
   }
 });
 
@@ -1044,21 +1304,36 @@ function showApp(){
   document.getElementById('loginPage').style.display='none';
   document.getElementById('app').style.display='block';
   refreshDashboard();
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      try{
+        if(!localStorage.getItem('tvh_intro_v1')) openOnboardingOffer();
+      }catch(e){}
+    });
+  });
 }
 
 // ============================================================
 // NAVIGATION
 // ============================================================
-function showPage(p){
+function showPage(p, opts){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
-  const titles = {dashboard:'Tổng Quan', createBill:'Tạo Bill Mới', billList:'Danh Sách Bill'};
-  document.getElementById('page'+p.charAt(0).toUpperCase()+p.slice(1)).classList.add('active');
+  const titles = {
+    dashboard:'Doanh Thu',
+    createBill:'Tạo hóa đơn',
+    billList:'Danh sách hóa đơn',
+    booking:'Booking',
+    guide:'Hướng dẫn sử dụng'
+  };
+  const pageEl = document.getElementById('page'+p.charAt(0).toUpperCase()+p.slice(1));
+  if(pageEl) pageEl.classList.add('active');
   document.getElementById('pageTitle').textContent = titles[p]||'';
-  event && event.currentTarget && event.currentTarget.classList.add('active');
+  const nav = document.querySelector('.nav-item[data-page="'+p+'"]');
+  if(nav) nav.classList.add('active');
   if(p==='dashboard') refreshDashboard();
   if(p==='billList') renderBillList(true);
-  closeSidebar();
+  if(!opts || !opts.skipClose) closeSidebar();
 }
 
 function toggleSidebar(){
@@ -1068,6 +1343,113 @@ function toggleSidebar(){
 function closeSidebar(){
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+// ----- Onboarding & tour -----
+const SITE_TOUR_STEPS = [
+  { center:true, page:'dashboard', title:'Chào mừng', body:'Đây là hệ thống quản lý hóa đơn Tùng Vĩnh Hy. Trong các bước tiếp theo, bạn sẽ được giới thiệu từng khu vực trên màn hình và công dụng của chúng.' },
+  { selector:'#tourSidebarNav', page:'dashboard', title:'Menu điều hướng', body:'Dùng các mục bên trái để chuyển giữa Doanh thu, tạo hóa đơn, danh sách, Booking và hướng dẫn. Trên điện thoại, nhấn nút gạch ngang góc trên để mở menu.' },
+  { selector:'[data-page="dashboard"]', page:'dashboard', title:'Doanh Thu', body:'Mục này gom số liệu tổng hợp và biểu đồ doanh thu theo tuần / tháng / năm, so với kỳ trước.' },
+  { selector:'#tourStats', page:'dashboard', title:'Thẻ số liệu', body:'Các số trên áp dụng cho kỳ bạn chọn ở thanh lọc: Tuần này, Tháng này hoặc Năm nay — khớp với biểu đồ bên dưới.' },
+  { selector:'#tourChartCard', page:'dashboard', title:'Biểu đồ', body:'Theo đúng kỳ đang xem: từng ngày trong tuần, từng ngày trong tháng, hoặc 12 tháng trong năm. Đường nhạt là kỳ trước (tuần/tráng/năm trước) để so sánh.' },
+  { selector:'[data-page="createBill"]', page:'dashboard', title:'Tạo hóa đơn', body:'Khi có khách mới, vào đây để nhập thông tin dịch vụ (lưu trú, cano, xe điện), số tiền và ảnh chuyển khoản.' },
+  { selector:'#tourBillTabs', page:'createBill', title:'Chọn loại dịch vụ', body:'Ba tab tương ứng ba loại bill. Mỗi loại có form riêng; nhớ điền họ tên và SĐT khách (bắt buộc).' },
+  { selector:'[data-page="billList"]', page:'createBill', title:'Danh sách hóa đơn', body:'Xem toàn bộ bill đã tạo, lọc theo ngày / loại / trạng thái / tên / SĐT, xuất link cho khách, đánh dấu Done hoặc xóa.' },
+  { selector:'[data-page="booking"]', page:'billList', title:'Booking', body:'Khu vực dành cho quản lý đặt chỗ — hiện đang mở rộng. Sau này bạn có thể theo dõi lịch đặt tại đây.' },
+  { selector:'[data-page="guide"]', page:'booking', title:'Hướng dẫn chi tiết', body:'Mục Hướng dẫn sử dụng chứa các bước A–Z và liên kết video YouTube (bạn thay link video thật trong mã nguồn khi có).' },
+  { center:true, page:'guide', title:'Hoàn tất', body:'Bạn đã xem qua các phần chính. Chúc bạn sử dụng hiệu quả — mọi lúc có thể mở lại mục Hướng dẫn sử dụng để đọc chi tiết.' }
+];
+
+function openOnboardingOffer(){
+  const el = document.getElementById('onboardingOffer');
+  if(el){ el.classList.add('open'); el.setAttribute('aria-hidden','false'); }
+}
+function closeOnboardingOffer(){
+  const el = document.getElementById('onboardingOffer');
+  if(el){ el.classList.remove('open'); el.setAttribute('aria-hidden','true'); }
+}
+function refuseOnboardingTour(){
+  try{ localStorage.setItem('tvh_intro_v1','refused'); }catch(e){}
+  closeOnboardingOffer();
+}
+function acceptOnboardingTour(){
+  closeOnboardingOffer();
+  startSiteTour();
+}
+
+function startSiteTour(){
+  siteTourIndex = 0;
+  const root = document.getElementById('siteTourRoot');
+  root.classList.add('open');
+  root.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  applySiteTourStep();
+}
+
+function siteTourFinish(){
+  document.getElementById('siteTourRoot').classList.remove('open');
+  document.getElementById('siteTourRoot').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  document.getElementById('siteTourHole').classList.remove('visible');
+  try{ localStorage.setItem('tvh_intro_v1','done'); }catch(e){}
+  closeSidebar();
+}
+
+function siteTourNext(){
+  if(siteTourIndex >= SITE_TOUR_STEPS.length - 1){
+    siteTourFinish();
+    return;
+  }
+  siteTourIndex++;
+  applySiteTourStep();
+}
+
+function siteTourPrev(){
+  if(siteTourIndex <= 0) return;
+  siteTourIndex--;
+  applySiteTourStep();
+}
+
+function applySiteTourStep(){
+  const step = SITE_TOUR_STEPS[siteTourIndex];
+  if(!step) return;
+  const skipClose = window.innerWidth <= 768 && step.selector && (step.selector === '#tourSidebarNav' || step.selector.indexOf('[data-page=') === 0);
+  showPage(step.page, { skipClose });
+  const pop = document.getElementById('siteTourPop');
+  const hole = document.getElementById('siteTourHole');
+  const nextBtn = document.getElementById('siteTourNextBtn');
+  const isLast = siteTourIndex >= SITE_TOUR_STEPS.length - 1;
+  nextBtn.innerHTML = isLast ? 'Kết thúc <i class="fa-solid fa-check"></i>' : 'Tiếp theo <i class="fa-solid fa-arrow-right"></i>';
+  document.getElementById('siteTourStepLabel').textContent = 'Bước ' + (siteTourIndex + 1) + '/' + SITE_TOUR_STEPS.length;
+  document.getElementById('siteTourTitle').textContent = step.title;
+  document.getElementById('siteTourBody').textContent = step.body;
+  if(step.center){
+    hole.classList.remove('visible');
+    pop.classList.add('site-tour-pop-center');
+    return;
+  }
+  pop.classList.remove('site-tour-pop-center');
+  if(skipClose){
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('sidebarOverlay').classList.add('open');
+  }
+  setTimeout(()=>{
+    const el = document.querySelector(step.selector);
+    if(!el){
+      hole.classList.remove('visible');
+      return;
+    }
+    el.scrollIntoView({ block:'center', behavior:'smooth' });
+    setTimeout(()=>{
+      const r = el.getBoundingClientRect();
+      const pad = 8;
+      hole.style.top = (r.top - pad) + 'px';
+      hole.style.left = (r.left - pad) + 'px';
+      hole.style.width = (r.width + pad * 2) + 'px';
+      hole.style.height = (r.height + pad * 2) + 'px';
+      hole.classList.add('visible');
+    }, 280);
+  }, 80);
 }
 
 // ============================================================
@@ -1188,7 +1570,7 @@ function saveBill(type){
   bills.unshift(bill);
   saveData();
   clearForm(type);
-  showToast('Đã tạo bill thành công!','success');
+  showToast('Đã tạo hóa đơn thành công!','success');
   showCreateBillModal(bill.id);
   refreshDashboard();
 }
@@ -1196,136 +1578,310 @@ function saveBill(type){
 // ============================================================
 // DASHBOARD
 // ============================================================
-function refreshDashboard(resetPage=false){
-  if(resetPage) dashPage = 1;
-  const fromVal = document.getElementById('filterFrom')?.value;
-  const toVal = document.getElementById('filterTo')?.value;
-  const typeVal = document.getElementById('filterType')?.value||'';
-  const statusVal = document.getElementById('filterStatus')?.value||'';
-  let filtered = bills.filter(b=>{
-    const d = new Date(b.createdAt);
-    if(fromVal && d < new Date(fromVal)) return false;
-    if(toVal && d > new Date(toVal+'T23:59:59')) return false;
-    if(typeVal && b.type!==typeVal) return false;
-    if(statusVal==='done' && !b.isDone) return false;
-    if(statusVal==='pending' && b.isDone) return false;
-    return true;
+let dashboardViewMode = 'month';
+
+function pad2(n){ return String(n).padStart(2,'0'); }
+function isoDateLocal(d){
+  return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
+}
+
+function getMonday(d){
+  const date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const day = date.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  date.setDate(date.getDate() + diff);
+  date.setHours(0,0,0,0);
+  return date;
+}
+
+function getCurrentScopeBounds(mode){
+  const now = new Date();
+  if(mode==='week'){
+    const start = getMonday(now);
+    const end = new Date(start);
+    end.setDate(end.getDate()+6);
+    end.setHours(23,59,59,999);
+    return { start, end };
+  }
+  if(mode==='month'){
+    const start = new Date(now.getFullYear(), now.getMonth(), 1);
+    const end = new Date(now.getFullYear(), now.getMonth()+1, 0, 23, 59, 59, 999);
+    return { start, end };
+  }
+  const y = now.getFullYear();
+  return { start: new Date(y,0,1), end: new Date(y,11,31,23,59,59,999) };
+}
+
+function getPreviousScopeBounds(mode){
+  const now = new Date();
+  if(mode==='week'){
+    const curMon = getMonday(now);
+    const start = new Date(curMon);
+    start.setDate(start.getDate()-7);
+    const end = new Date(start);
+    end.setDate(end.getDate()+6);
+    end.setHours(23,59,59,999);
+    return { start, end };
+  }
+  if(mode==='month'){
+    const start = new Date(now.getFullYear(), now.getMonth()-1, 1);
+    const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
+    return { start, end };
+  }
+  const y = now.getFullYear()-1;
+  return { start: new Date(y,0,1), end: new Date(y,11,31,23,59,59,999) };
+}
+
+function billsInRange(start, end){
+  const t0 = start.getTime();
+  const t1 = end.getTime();
+  return bills.filter(b=>{
+    const t = new Date(b.createdAt).getTime();
+    return t >= t0 && t <= t1;
   });
-  document.getElementById('s1').textContent = bills.length;
-  document.getElementById('s2').textContent = bills.filter(b=>b.isDone).length;
-  document.getElementById('s3').textContent = bills.filter(b=>!b.isDone).length;
-  document.getElementById('s4').textContent = fmtMoneyCompact(bills.reduce((a,b)=>a+b.total,0));
-  renderDashTable(filtered);
-  renderChart();
-  renderCal();
 }
 
-function renderDashPagination(totalItems, pageSize){
-  const el = document.getElementById('dashPagination');
-  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
-  if(totalItems <= pageSize){
-    el.style.display = 'none';
-    el.innerHTML = '';
-    return;
-  }
-  el.style.display = 'flex';
-  const pages = [];
-  const addPage = (p)=>pages.push(`<button class="page-btn ${p===dashPage?'active':''}" onclick="goToDashPage(${p})">${p}</button>`);
-  if(totalPages <= 6){
-    for(let p=1;p<=totalPages;p++) addPage(p);
-  } else {
-    addPage(1);
-    if(dashPage > 3) pages.push('<span class="page-dots">...</span>');
-    for(let p=Math.max(2,dashPage-1); p<=Math.min(totalPages-1,dashPage+1); p++) addPage(p);
-    if(dashPage < totalPages-2) pages.push('<span class="page-dots">...</span>');
-    addPage(totalPages);
-  }
-  el.innerHTML = `<button onclick="changeDashPage(-1)" ${dashPage<=1?'disabled':''}><i class="fa-solid fa-chevron-left"></i></button>${pages.join('')}<button onclick="changeDashPage(1)" ${dashPage>=totalPages?'disabled':''}><i class="fa-solid fa-chevron-right"></i></button>`;
+function formatHintRange(start, end){
+  const o = { day:'2-digit', month:'2-digit', year:'numeric' };
+  return start.toLocaleDateString('vi-VN',o)+' — '+end.toLocaleDateString('vi-VN',o);
 }
 
-function changeDashPage(step){
-  dashPage += step;
+function setDashboardScope(mode){
+  dashboardViewMode = mode;
+  document.querySelectorAll('.dash-scope-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-scope')===mode);
+  });
   refreshDashboard();
 }
 
-function goToDashPage(page){
-  dashPage = page;
-  refreshDashboard();
+function updateDashboardPeriodHint(){
+  const mode = dashboardViewMode;
+  const { start, end } = getCurrentScopeBounds(mode);
+  const el = document.getElementById('dashboardPeriodHint');
+  if(!el) return;
+  let title = mode==='week' ? 'Tuần này (Thứ Hai → Chủ nhật)' : mode==='month' ? 'Tháng này' : 'Năm nay';
+  const prev = getPreviousScopeBounds(mode);
+  el.innerHTML = '<strong>'+title+'</strong> · '+formatHintRange(start,end)+
+    '<span class="subhint">So sánh biểu đồ với kỳ trước: '+formatHintRange(prev.start, prev.end)+'</span>';
 }
 
-function renderDashTable(list){
-  const tbody = document.getElementById('dashTableBody');
-  const pageSize = 4;
-  const totalPages = Math.max(1, Math.ceil(list.length / pageSize));
-  if(dashPage > totalPages) dashPage = totalPages;
-  if(dashPage < 1) dashPage = 1;
-  if(!list.length){
-    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:28px;color:var(--text-light)">Không có bill nào</td></tr>';
-    renderDashPagination(0, pageSize);
-    return;
+function initDashboardExportDefaults(){
+  const d = new Date();
+  const day = document.getElementById('dashExportDay');
+  const w = document.getElementById('dashExportWeekAnchor');
+  const m = document.getElementById('dashExportMonth');
+  const y = document.getElementById('dashExportYear');
+  if(day && !day.value) day.value = isoDateLocal(d);
+  if(w && !w.value) w.value = isoDateLocal(d);
+  if(m && !m.value) m.value = d.getFullYear()+'-'+pad2(d.getMonth()+1);
+  if(y && (y.value==='' || y.value==null || Number.isNaN(Number(y.value)))) y.value = d.getFullYear();
+}
+
+function toggleDashExportInputs(){
+  const sel = document.getElementById('dashExportKind');
+  if(!sel) return;
+  const k = sel.value || 'day';
+  const layout = document.querySelector('.dash-export-layout');
+  if(layout) layout.classList.toggle('is-day-mode', k==='day');
+  [['dashExportDayWrap','day'],['dashExportWeekWrap','week'],['dashExportMonthWrap','month'],['dashExportYearWrap','year']].forEach(([id, key])=>{
+    const w = document.getElementById(id);
+    if(w) w.classList.toggle('show', k===key);
+  });
+}
+
+function getExportRange(){
+  const k = document.getElementById('dashExportKind').value;
+  if(k==='day'){
+    const v = document.getElementById('dashExportDay').value;
+    if(!v){ showToast('Chọn ngày cần xuất','error'); return null; }
+    const [yy,mm,dd] = v.split('-').map(Number);
+    const start = new Date(yy,mm-1,dd,0,0,0,0);
+    const end = new Date(yy,mm-1,dd,23,59,59,999);
+    return { start, end, title:'Ngày '+pad2(dd)+'/'+pad2(mm)+'/'+yy };
   }
+  if(k==='week'){
+    const v = document.getElementById('dashExportWeekAnchor').value;
+    if(!v){ showToast('Chọn một ngày trong tuần cần xuất','error'); return null; }
+    const [yy,mm,dd] = v.split('-').map(Number);
+    const anchor = new Date(yy,mm-1,dd);
+    const mon = getMonday(anchor);
+    const end = new Date(mon);
+    end.setDate(end.getDate()+6);
+    end.setHours(23,59,59,999);
+    return { start: mon, end, title: 'Tuần '+formatHintRange(mon,end) };
+  }
+  if(k==='month'){
+    const v = document.getElementById('dashExportMonth').value;
+    if(!v){ showToast('Chọn tháng','error'); return null; }
+    const [yy,mm] = v.split('-').map(Number);
+    const start = new Date(yy,mm-1,1);
+    const end = new Date(yy,mm,0,23,59,59,999);
+    return { start, end, title: 'Tháng '+mm+'/'+yy };
+  }
+  const yy = parseInt(document.getElementById('dashExportYear').value,10);
+  if(!yy || yy<2000 || yy>2100){ showToast('Nhập năm hợp lệ (2000–2100)','error'); return null; }
+  return { start: new Date(yy,0,1), end: new Date(yy,11,31,23,59,59,999), title: 'Năm '+yy };
+}
+
+/** Xuất Excel: không ghi literal các thẻ đóng HTML trong file — tránh WebView/mobile hiểu nhầm ranh giới script */
+function xlTagClose(tag){
+  return '<' + '/' + tag + '>';
+}
+
+function runDashboardExport(){
+  const range = getExportRange();
+  if(!range) return;
+  const list = billsInRange(range.start, range.end).sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+  const totalRev = list.reduce((s,b)=>s+b.total,0);
+  const doneC = list.filter(b=>b.isDone).length;
+  const pendC = list.length-doneC;
   const typeMap = {stay:'Lưu Trú', canoe:'Cano', ev:'Xe Điện'};
-  const start = (dashPage-1)*pageSize;
-  const pageData = list.slice(start, start+pageSize);
-  tbody.innerHTML = pageData.map(b=>`
-    <tr>
-      <td style="font-weight:700;color:var(--blue-600)">${b.id}</td>
-      <td><span class="badge badge-${b.type}">${typeMap[b.type]||b.type}</span></td>
-      <td>${fmtDate(b.createdAt)}</td>
-      <td style="font-weight:700">${fmtMoney(b.total)}đ</td>
-      <td style="font-weight:700;color:${b.remain>0?'#e67e22':'#16a085'}">${fmtMoney(b.remain)}đ</td>
-      <td><span class="badge ${b.isDone?'badge-done':'badge-pending'}">${b.isDone?'<i class="fa-solid fa-circle-check"></i> Xong':'<i class="fa-solid fa-clock"></i> Chờ'}</span></td>
-      <td><button class="btn btn-secondary btn-xs" onclick="exportLink('${b.id}')"><i class="fa-solid fa-share"></i></button></td>
-    </tr>`).join('');
-  renderDashPagination(list.length, pageSize);
+  const Z = xlTagClose;
+  const rows = list.map((b,i)=>{
+    const st = b.isDone ? 'Đã hoàn thành' : 'Chưa hoàn thành';
+    const created = fmtBillDateTime(b.createdAt);
+    return '<tr>'+
+      '<td style="border:1px solid #ccc;padding:6px;text-align:center">'+(i+1)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px">'+escapeHtml(b.id)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px">'+(typeMap[b.type]||b.type)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px">'+escapeHtml(created)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px">'+escapeHtml(b.customerName||'')+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px">'+escapeHtml(b.customerPhone||'')+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px;text-align:right">'+fmtMoney(b.total)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px;text-align:right">'+fmtMoney(b.deposit||0)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px;text-align:right">'+fmtMoney(b.remain||0)+Z('td')+
+      '<td style="border:1px solid #ccc;padding:6px">'+st+Z('td')+
+      Z('tr');
+  }).join('');
+  const sumHtml =
+    '<table style="font-family:Arial;font-size:11px;margin-bottom:20px;border-collapse:collapse;width:100%;max-width:480px">'+
+    '<tr><th colspan="2" style="background:#0d3a6e;color:#fff;padding:10px;text-align:left">1. TỔNG HỢP THEO KỲ'+Z('th')+Z('tr')+
+    '<tr><td style="border:1px solid #ccc;padding:8px;font-weight:bold">Tổng doanh thu (VNĐ)'+Z('td')+'<td style="border:1px solid #ccc;padding:8px;text-align:right">'+fmtMoney(totalRev)+Z('td')+Z('tr')+
+    '<tr><td style="border:1px solid #ccc;padding:8px;font-weight:bold">Số hóa đơn'+Z('td')+'<td style="border:1px solid #ccc;padding:8px;text-align:right">'+list.length+Z('td')+Z('tr')+
+    '<tr><td style="border:1px solid #ccc;padding:8px;font-weight:bold">Đã hoàn thành'+Z('td')+'<td style="border:1px solid #ccc;padding:8px;text-align:right">'+doneC+Z('td')+Z('tr')+
+    '<tr><td style="border:1px solid #ccc;padding:8px;font-weight:bold">Chưa hoàn thành'+Z('td')+'<td style="border:1px solid #ccc;padding:8px;text-align:right">'+pendC+Z('td')+Z('tr')+
+    Z('table');
+  const detailHead =
+    '<table style="font-family:Arial;font-size:11px;border-collapse:collapse;width:100%">'+
+    '<thead><tr style="background:#2e9ed6;color:#fff">'+
+    '<th style="border:1px solid #1f7aad;padding:8px">STT'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px">Mã HĐ'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px">Loại'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px">Ngày tạo'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px">Khách'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px">SĐT'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px;text-align:right">Tổng tiền'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px;text-align:right">Cọc'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px;text-align:right">Còn lại'+Z('th')+
+    '<th style="border:1px solid #1f7aad;padding:8px">Trạng thái'+Z('th')+
+    Z('tr')+Z('thead')+'<tbody>';
+  const detailBody = rows || ('<tr><td colspan="10" style="border:1px solid #ccc;padding:14px;text-align:center">Không có hóa đơn trong kỳ đã chọn'+Z('td')+Z('tr'));
+  const html = '<html xmlns:o="urn:schemas-microsoft-com:office:office"><head><meta charset="utf-8">'+Z('head')+'<body>'+
+    '<h2 style="font-family:Arial,sans-serif;color:#0d3a6e">Báo cáo doanh thu — Tùng Vĩnh Hy'+Z('h2')+
+    '<p style="font-family:Arial,sans-serif;font-size:12px"><strong>Kỳ xuất:'+Z('strong')+' '+escapeHtml(range.title)+Z('p')+
+    '<p style="font-family:Arial,sans-serif;font-size:12px"><strong>Thời điểm xuất file:'+Z('strong')+' '+escapeHtml(new Date().toLocaleString('vi-VN'))+Z('p')+
+    '<br>'+sumHtml+
+    '<h3 style="font-family:Arial,sans-serif;font-size:14px;color:#0d3a6e">2. CHI TIẾT TỪNG HÓA ĐƠN'+Z('h3')+
+    detailHead+detailBody+Z('tbody')+Z('table')+
+    Z('body')+Z('html');
+  const blob = new Blob(['\ufeff', html], { type: 'application/vnd.ms-excel;charset=utf-8' });
+  const a = document.createElement('a');
+  let safe = range.title.replace(/[^\w\d\-]+/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
+  if(!safe) safe = 'Ky_'+Date.now();
+  safe = safe.slice(0,72);
+  a.href = URL.createObjectURL(blob);
+  a.download = 'BaoCao_DoanhThu_'+safe+'.xls';
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1500);
+  showToast('Đã tải file Excel','success');
+}
+
+function refreshDashboard(){
+  initDashboardExportDefaults();
+  toggleDashExportInputs();
+  const mode = dashboardViewMode;
+  const { start, end } = getCurrentScopeBounds(mode);
+  const list = billsInRange(start, end);
+  document.getElementById('s1').textContent = list.length;
+  document.getElementById('s2').textContent = list.filter(b=>b.isDone).length;
+  document.getElementById('s3').textContent = list.filter(b=>!b.isDone).length;
+  document.getElementById('s4').textContent = fmtMoneyCompact(list.reduce((a,b)=>a+b.total,0));
+  updateDashboardPeriodHint();
+  renderChart();
 }
 
 function renderChart(){
-  const period = document.getElementById('chartPeriod')?.value || 'week';
-  const now = new Date();
+  const canvasEl = document.getElementById('revenueChart');
+  if(!canvasEl) return;
+  const mode = dashboardViewMode;
+  const curBounds = getCurrentScopeBounds(mode);
+  const prevBounds = getPreviousScopeBounds(mode);
   const labels = [];
   const current = [];
   const previous = [];
-  const cfg = period==='year'
-    ? {points:12, step:'month'}
-    : period==='month'
-      ? {points:30, step:'day'}
-      : {points:7, step:'day'};
 
-  const getBucketTotal = (start, end)=> bills
-    .filter(b=>{const t=new Date(b.createdAt).getTime(); return t>=start.getTime() && t<end.getTime();})
+  const bucketTotal = (rStart, rEnd)=> bills
+    .filter(b=>{
+      const t = new Date(b.createdAt).getTime();
+      return t >= rStart.getTime() && t <= rEnd.getTime();
+    })
     .reduce((a,b)=>a+b.total,0);
 
-  for(let i=cfg.points-1;i>=0;i--){
-    if(cfg.step==='month'){
-      const start = new Date(now.getFullYear(), now.getMonth()-i, 1);
-      const end = new Date(now.getFullYear(), now.getMonth()-i+1, 1);
-      const prevStart = new Date(now.getFullYear()-1, now.getMonth()-i, 1);
-      const prevEnd = new Date(now.getFullYear()-1, now.getMonth()-i+1, 1);
-      labels.push(start.toLocaleDateString('vi-VN',{month:'2-digit'}));
-      current.push(getBucketTotal(start,end));
-      previous.push(getBucketTotal(prevStart,prevEnd));
-    } else {
-      const start = new Date(now);
-      start.setHours(0,0,0,0);
-      start.setDate(now.getDate()-i);
-      const end = new Date(start); end.setDate(end.getDate()+1);
-      const prevStart = new Date(start); prevStart.setDate(prevStart.getDate()-cfg.points);
-      const prevEnd = new Date(end); prevEnd.setDate(prevEnd.getDate()-cfg.points);
-      labels.push(start.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'}));
-      current.push(getBucketTotal(start,end));
-      previous.push(getBucketTotal(prevStart,prevEnd));
+  if(mode==='week'){
+    for(let i=0;i<7;i++){
+      const d0 = new Date(curBounds.start);
+      d0.setDate(d0.getDate()+i);
+      d0.setHours(0,0,0,0);
+      const d1 = new Date(d0);
+      d1.setHours(23,59,59,999);
+      labels.push(d0.toLocaleDateString('vi-VN',{weekday:'short', day:'2-digit', month:'2-digit'}));
+      current.push(bucketTotal(d0,d1));
+      const p0 = new Date(prevBounds.start);
+      p0.setDate(p0.getDate()+i);
+      p0.setHours(0,0,0,0);
+      const p1 = new Date(p0);
+      p1.setHours(23,59,59,999);
+      previous.push(bucketTotal(p0,p1));
+    }
+  } else if(mode==='month'){
+    const y = curBounds.start.getFullYear();
+    const mo = curBounds.start.getMonth();
+    const daysInMonth = new Date(y,mo+1,0).getDate();
+    const py = prevBounds.start.getFullYear();
+    const pm = prevBounds.start.getMonth();
+    const prevMonthDays = new Date(py,pm+1,0).getDate();
+    for(let day=1; day<=daysInMonth; day++){
+      const d0 = new Date(y,mo,day,0,0,0,0);
+      const d1 = new Date(y,mo,day,23,59,59,999);
+      labels.push(String(day));
+      current.push(bucketTotal(d0,d1));
+      const dday = Math.min(day, prevMonthDays);
+      const p0 = new Date(py,pm,dday,0,0,0,0);
+      const p1 = new Date(py,pm,dday,23,59,59,999);
+      previous.push(bucketTotal(p0,p1));
+    }
+  } else {
+    const cy = curBounds.start.getFullYear();
+    const py = prevBounds.start.getFullYear();
+    for(let m=0;m<12;m++){
+      const d0 = new Date(cy,m,1);
+      const d1 = new Date(cy,m+1,0,23,59,59,999);
+      labels.push('T'+(m+1));
+      current.push(bucketTotal(d0,d1));
+      const p0 = new Date(py,m,1);
+      const p1 = new Date(py,m+1,0,23,59,59,999);
+      previous.push(bucketTotal(p0,p1));
     }
   }
 
   if(revenueChart) revenueChart.destroy();
-  revenueChart = new Chart(document.getElementById('revenueChart'), {
+  revenueChart = new Chart(canvasEl, {
     type:'line',
     data:{
       labels,
       datasets:[
-        {label:'Kỳ hiện tại', data:current, borderColor:'#2e9ed6', backgroundColor:'rgba(46,158,214,0.2)', tension:0.35, fill:false, pointRadius:3},
-        {label:'Kỳ trước', data:previous, borderColor:'#8ecde8', backgroundColor:'rgba(142,205,232,0.2)', tension:0.35, fill:false, pointRadius:2}
+        {label:'Kỳ đang xem (Tuần/Tháng/Năm này)', data:current, borderColor:'#2e9ed6', backgroundColor:'rgba(46,158,214,0.2)', tension:0.35, fill:false, pointRadius:3},
+        {label:'Kỳ trước để so sánh', data:previous, borderColor:'#8ecde8', backgroundColor:'rgba(142,205,232,0.2)', tension:0.35, fill:false, pointRadius:2}
       ]
     },
     options:{
@@ -1339,76 +1895,6 @@ function renderChart(){
       scales:{y:{ticks:{callback:(v)=>fmtMoneyCompact(v)}}}
     }
   });
-}
-
-// ============================================================
-// CALENDAR
-// ============================================================
-function setCalToday(){
-  const d = new Date();
-  calYear = d.getFullYear(); calMonth = d.getMonth();
-  renderCal();
-}
-function calPrev(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCal();}
-function calNext(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCal();}
-
-function renderCal(){
-  const months = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
-  document.getElementById('calMonthLabel').textContent = `${months[calMonth]} ${calYear}`;
-  const grid = document.getElementById('calGrid');
-  const dows = ['CN','T2','T3','T4','T5','T6','T7'];
-  let html = dows.map(d=>`<div class="cal-dow">${d}</div>`).join('');
-  const first = new Date(calYear, calMonth, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
-  const today = new Date();
-  // Prev month days
-  const prevDays = new Date(calYear, calMonth, 0).getDate();
-  for(let i=first-1;i>=0;i--) html+=`<div class="cal-day other">${prevDays-i}</div>`;
-  // Current month
-  for(let d=1;d<=daysInMonth;d++){
-    const billsOnDay = bills.filter(b=>{
-      const bd = new Date(b.createdAt);
-      return bd.getFullYear()===calYear && bd.getMonth()===calMonth && bd.getDate()===d;
-    });
-    const isToday = d===today.getDate() && calMonth===today.getMonth() && calYear===today.getFullYear();
-    const count = billsOnDay.length;
-    let cls = 'cal-day';
-    if(isToday) cls+=' today';
-    if(count>=1 && count<=2) cls+=' has-low';
-    else if(count>=3 && count<=5) cls+=' has-mid';
-    else if(count>=6) cls+=' has-high';
-    html+=`<div class="${cls}" onclick="openDaySummary(${calYear},${calMonth+1},${d})">${d}</div>`;
-  }
-  // Next month
-  const total = first+daysInMonth; const rem = total%7?7-total%7:0;
-  for(let d=1;d<=rem;d++) html+=`<div class="cal-day other">${d}</div>`;
-  grid.innerHTML=html;
-}
-
-function openDaySummary(y,m,d){
-  const dayBills = bills.filter(b=>{
-    const bd = new Date(b.createdAt);
-    return bd.getFullYear()===y && (bd.getMonth()+1)===m && bd.getDate()===d;
-  });
-  const doneCount = dayBills.filter(b=>b.isDone).length;
-  const pendingCount = dayBills.length - doneCount;
-  const revenue = dayBills.reduce((a,b)=>a+b.total,0);
-  const typeMap = {stay:'Lưu Trú', canoe:'Cano', ev:'Xe Điện'};
-  const content = document.getElementById('daySummaryContent');
-  content.innerHTML = `
-    <div class="pub-section" style="margin-bottom:12px">
-      <div class="pub-row"><span>Ngày</span><span>${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}/${y}</span></div>
-      <div class="pub-row"><span>Tổng bill</span><span>${dayBills.length}</span></div>
-      <div class="pub-row"><span>Hoàn thiện</span><span>${doneCount}</span></div>
-      <div class="pub-row"><span>Chưa hoàn thiện</span><span>${pendingCount}</span></div>
-      <div class="pub-row"><span>Doanh thu</span><span style="font-weight:800">${fmtMoney(revenue)}đ</span></div>
-    </div>
-    <div class="pub-section">
-      <div class="pub-section-title"><i class="fa-solid fa-list"></i> Danh Sách Bill</div>
-      ${dayBills.length ? dayBills.map(b=>`<div class="pub-row"><span>${b.id} · ${escapeHtml(b.customerName)||'---'} · ${typeMap[b.type]||b.type}</span><span>${b.isDone?'Đã xong':'Chờ'} · ${fmtMoney(b.total)}đ</span></div>`).join('') : '<p style="font-size:13px;color:var(--text-light)">Không có bill trong ngày này.</p>'}
-    </div>
-  `;
-  openModal('daySummaryModal');
 }
 
 // ============================================================
@@ -1816,6 +2302,14 @@ function escapeHtml(str){
   const d = document.createElement('div');
   d.textContent = str == null ? '' : String(str);
   return d.innerHTML;
+}
+</script>
+<script>
+if('serviceWorker'in navigator){
+  window.addEventListener('load',function(){
+    var swVersion = '20260505-1';
+    navigator.serviceWorker.register('/sw.js?v='+swVersion,{ updateViaCache:'none' }).catch(function(){});
+  });
 }
 </script>
 </body>
