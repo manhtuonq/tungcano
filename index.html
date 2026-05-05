@@ -378,7 +378,7 @@ tbody tr:hover td{background:var(--blue-50)}
 /* Tour từng bước */
 .site-tour-root{position:fixed;inset:0;z-index:10001;display:none}
 .site-tour-root.open{display:block}
-.site-tour-dim{position:absolute;inset:0;z-index:1;background:rgba(10,37,64,0.38);backdrop-filter:blur(4px)}
+.site-tour-dim{position:absolute;z-index:1;background:rgba(10,37,64,0.38);backdrop-filter:blur(4px);pointer-events:none}
 .site-tour-hole{position:absolute;z-index:2;border-radius:14px;border:2px solid rgba(255,255,255,0.95);box-shadow:0 0 0 2px rgba(46,158,214,0.95),0 0 28px rgba(142,205,232,0.88),0 0 0 4000px rgba(10,37,64,0.64);background:transparent;backdrop-filter:none;pointer-events:none;transition:top 0.35s ease,left 0.35s ease,width 0.35s ease,height 0.35s ease,opacity 0.25s ease;opacity:0}
 .site-tour-hole.visible{opacity:1}
 .site-tour-pop{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;width:min(420px,calc(100% - 32px));background:var(--white);border-radius:16px;padding:20px 20px 16px;box-shadow:0 16px 48px rgba(10,37,64,0.28);border:1px solid var(--border);z-index:10002;pointer-events:auto}
@@ -1156,7 +1156,10 @@ tbody tr:hover td{background:var(--blue-50)}
 
 <!-- Tour từng bước -->
 <div class="site-tour-root" id="siteTourRoot" aria-hidden="true">
-  <div class="site-tour-dim"></div>
+  <div class="site-tour-dim" id="siteTourDimTop"></div>
+  <div class="site-tour-dim" id="siteTourDimRight"></div>
+  <div class="site-tour-dim" id="siteTourDimBottom"></div>
+  <div class="site-tour-dim" id="siteTourDimLeft"></div>
   <div class="site-tour-hole" id="siteTourHole"></div>
   <div class="site-tour-pop" id="siteTourPop">
     <span class="site-tour-step" id="siteTourStepLabel"></span>
@@ -1454,6 +1457,47 @@ function playGuideCue(type){
   }catch(e){}
 }
 
+function setSiteTourDimPieces(rect){
+  const vw = window.innerWidth || document.documentElement.clientWidth || 0;
+  const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+  const topPiece = document.getElementById('siteTourDimTop');
+  const rightPiece = document.getElementById('siteTourDimRight');
+  const bottomPiece = document.getElementById('siteTourDimBottom');
+  const leftPiece = document.getElementById('siteTourDimLeft');
+  if(!topPiece || !rightPiece || !bottomPiece || !leftPiece) return;
+  if(!rect){
+    topPiece.style.top = '0px'; topPiece.style.left = '0px'; topPiece.style.width = vw + 'px'; topPiece.style.height = vh + 'px';
+    rightPiece.style.width = '0px'; rightPiece.style.height = '0px';
+    bottomPiece.style.width = '0px'; bottomPiece.style.height = '0px';
+    leftPiece.style.width = '0px'; leftPiece.style.height = '0px';
+    return;
+  }
+  const holeTop = Math.max(0, rect.top);
+  const holeLeft = Math.max(0, rect.left);
+  const holeRight = Math.min(vw, rect.left + rect.width);
+  const holeBottom = Math.min(vh, rect.top + rect.height);
+
+  topPiece.style.top = '0px';
+  topPiece.style.left = '0px';
+  topPiece.style.width = vw + 'px';
+  topPiece.style.height = holeTop + 'px';
+
+  bottomPiece.style.top = holeBottom + 'px';
+  bottomPiece.style.left = '0px';
+  bottomPiece.style.width = vw + 'px';
+  bottomPiece.style.height = Math.max(0, vh - holeBottom) + 'px';
+
+  leftPiece.style.top = holeTop + 'px';
+  leftPiece.style.left = '0px';
+  leftPiece.style.width = holeLeft + 'px';
+  leftPiece.style.height = Math.max(0, holeBottom - holeTop) + 'px';
+
+  rightPiece.style.top = holeTop + 'px';
+  rightPiece.style.left = holeRight + 'px';
+  rightPiece.style.width = Math.max(0, vw - holeRight) + 'px';
+  rightPiece.style.height = Math.max(0, holeBottom - holeTop) + 'px';
+}
+
 function applySiteTourStep(soundType){
   const step = SITE_TOUR_STEPS[siteTourIndex];
   if(!step) return;
@@ -1476,6 +1520,7 @@ function applySiteTourStep(soundType){
   }
   if(step.center){
     hole.classList.remove('visible');
+    setSiteTourDimPieces(null);
     pop.classList.add('site-tour-pop-center');
     return;
   }
@@ -1488,6 +1533,7 @@ function applySiteTourStep(soundType){
     const el = document.querySelector(step.selector);
     if(!el){
       hole.classList.remove('visible');
+      setSiteTourDimPieces(null);
       return;
     }
     activeTourTarget = el;
@@ -1500,6 +1546,12 @@ function applySiteTourStep(soundType){
       hole.style.left = (r.left - pad) + 'px';
       hole.style.width = (r.width + pad * 2) + 'px';
       hole.style.height = (r.height + pad * 2) + 'px';
+      setSiteTourDimPieces({
+        top: r.top - pad,
+        left: r.left - pad,
+        width: r.width + pad * 2,
+        height: r.height + pad * 2
+      });
       hole.classList.add('visible');
     }, 280);
   }, 80);
