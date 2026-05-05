@@ -388,6 +388,7 @@ tbody tr:hover td{background:var(--blue-50)}
 .site-tour-pop-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center}
 .site-tour-pop-actions .btn{padding:9px 14px;font-size:12px}
 .site-tour-step{font-size:11px;font-weight:700;color:var(--text-light);margin-right:auto}
+.site-tour-target-active{position:relative!important;z-index:10003!important;filter:none!important;backdrop-filter:none!important}
 
 /* Hướng dẫn + Booking */
 .guide-page{max-width:960px;margin:0 auto}
@@ -1186,6 +1187,7 @@ let revenueChart = null;
 let siteTourIndex = 0;
 let guideSynth = null;
 let guideAudioReady = false;
+let activeTourTarget = null;
 
 const USERS = [{u:'admin', p:'admin123'}, {u:'tungvinhhy', p:'123zxc123'}];
 
@@ -1395,6 +1397,10 @@ function siteTourFinish(){
   document.getElementById('siteTourRoot').setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
   document.getElementById('siteTourHole').classList.remove('visible');
+  if(activeTourTarget){
+    activeTourTarget.classList.remove('site-tour-target-active');
+    activeTourTarget = null;
+  }
   playGuideCue('finish');
   try{ localStorage.setItem('tvh_intro_v1','done'); }catch(e){}
   closeSidebar();
@@ -1450,6 +1456,10 @@ function playGuideCue(type){
 function applySiteTourStep(soundType){
   const step = SITE_TOUR_STEPS[siteTourIndex];
   if(!step) return;
+  if(activeTourTarget){
+    activeTourTarget.classList.remove('site-tour-target-active');
+    activeTourTarget = null;
+  }
   const skipClose = window.innerWidth <= 768 && step.selector && (step.selector === '#tourSidebarNav' || step.selector.indexOf('[data-page=') === 0);
   showPage(step.page, { skipClose });
   const pop = document.getElementById('siteTourPop');
@@ -1479,6 +1489,8 @@ function applySiteTourStep(soundType){
       hole.classList.remove('visible');
       return;
     }
+    activeTourTarget = el;
+    activeTourTarget.classList.add('site-tour-target-active');
     el.scrollIntoView({ block:'center', behavior:'smooth' });
     setTimeout(()=>{
       const r = el.getBoundingClientRect();
