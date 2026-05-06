@@ -159,6 +159,9 @@ animation:dongsonSpin 26s linear infinite}
 .sidebar-footer{padding:16px 12px;border-top:1px solid rgba(255,255,255,0.1)}
 .btn-logout{display:flex;align-items:center;gap:10px;width:100%;padding:11px 16px;background:rgba(255,255,255,0.08);border:none;border-radius:10px;color:var(--blue-200);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;white-space:nowrap}
 .btn-logout:hover{background:rgba(255,100,100,0.2);color:#ff9090}
+.sidebar-toggle{background:var(--blue-50);border:1px solid var(--border);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--text-mid);cursor:pointer;transition:all 0.2s}
+.sidebar-toggle:hover{background:var(--blue-100);color:var(--blue-700)}
+#desktopSidebarToggle{display:flex}
 
 /* MAIN CONTENT */
 .main{margin-left:var(--sidebar);min-height:100vh;position:relative;transition:margin-left 0.3s;max-width:100%;padding-top:64px}
@@ -170,6 +173,19 @@ animation:dongsonSpin 26s linear infinite}
 .topbar-date{font-size:12px;color:var(--text-light);font-weight:600;background:var(--blue-50);padding:6px 14px;border-radius:20px;border:1px solid var(--border)}
 .avatar{width:38px;height:38px;background:var(--blue-500);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:14px;font-weight:700}
 .content{padding:28px;max-width:100%}
+#app.sidebar-collapsed .sidebar{width:78px}
+#app.sidebar-collapsed .main{margin-left:78px}
+#app.sidebar-collapsed .topbar{left:78px}
+#app.sidebar-collapsed .sidebar-header{padding:20px 10px}
+#app.sidebar-collapsed .sidebar-brand{justify-content:center}
+#app.sidebar-collapsed .sidebar-brand .b-text{display:none}
+#app.sidebar-collapsed .nav-section{padding:0 8px}
+#app.sidebar-collapsed .nav-section-label{display:none}
+#app.sidebar-collapsed .nav-item{justify-content:center;padding:11px 0}
+#app.sidebar-collapsed .nav-item span{display:none}
+#app.sidebar-collapsed .btn-logout{justify-content:center;padding:11px 0}
+#app.sidebar-collapsed .btn-logout span{display:none}
+#app.sidebar-collapsed #desktopSidebarToggle i{transform:rotate(180deg)}
 
 /* PAGES */
 .page{display:none}
@@ -233,27 +249,51 @@ animation:dongsonSpin 26s linear infinite}
 .chart-bar-val{font-size:10px;color:var(--text-mid);font-weight:700}
 
 /* CALENDAR */
-.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.booking-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.booking-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.booking-stat{background:var(--blue-50);border:1px solid var(--border);border-radius:12px;padding:10px}
+.booking-stat p{font-size:11px;color:var(--text-light);font-weight:700;margin-bottom:4px}
+.booking-stat h4{font-size:18px;color:var(--text-dark);font-weight:800;line-height:1.15}
+.booking-stat h4 small{font-size:12px;font-weight:700;color:var(--text-mid)}
+.booking-calendar-wrap{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:12px}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .cal-nav{display:flex;gap:8px}
 .cal-nav button{background:var(--blue-50);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;cursor:pointer;color:var(--text-mid);font-size:14px;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
 .cal-nav button:hover{background:var(--blue-100)}
 .cal-month{font-size:14px;font-weight:800;color:var(--text-dark)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .cal-dow{font-size:10px;font-weight:700;color:var(--text-light);text-align:center;padding:4px 0;text-transform:uppercase}
-.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;position:relative;transition:background 0.2s}
-.cal-day:hover{background:var(--blue-100)}
-.cal-day.other{color:var(--blue-200)}
-.cal-day.today{background:var(--blue-500);color:var(--white)}
-.cal-day.has-done{background:var(--blue-100);color:var(--blue-700)}
-.cal-day.has-done::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--blue-500)}
-.cal-day.has-undone{background:#fff4e0;color:#c07000}
-.cal-day.has-undone::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#e67e22}
-.cal-day.has-low{background:#ffe5e5;color:#cc2e2e}
-.cal-day.has-mid{background:#fff3d9;color:#b7791f}
-.cal-day.has-high{background:#e4f8e8;color:#22863a}
-.cal-legend{display:flex;gap:16px;margin-top:12px}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;position:relative;transition:all 0.2s;border:1.5px solid var(--border);background:#fff;color:var(--text-dark)}
+.cal-day:hover{transform:translateY(-1px)}
+.cal-day.other{opacity:0.35}
+.cal-day.today{background:var(--blue-600);color:#fff;border-color:var(--blue-600)}
+.cal-day.selected{box-shadow:0 0 0 2px var(--blue-300)}
+.cal-day.level-low{border-color:#e45a5a}
+.cal-day.level-mid{border-color:#2e9ed6}
+.cal-day.level-high{border-color:#e2a019;background:#fff8e8}
+.cal-day-count{position:absolute;top:2px;right:3px;min-width:17px;height:17px;border-radius:999px;background:#e74c3c;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:800;padding:0 4px}
+.cal-day-high-icon{position:absolute;left:3px;bottom:2px;color:#e2a019;font-size:10px}
+.cal-legend{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
 .cal-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--text-light)}
-.cal-legend-dot{width:8px;height:8px;border-radius:50%}
+.cal-legend-dot{width:10px;height:10px;border-radius:3px;border:1.5px solid transparent;background:#fff}
+.cal-legend-dot.low{border-color:#e45a5a}
+.cal-legend-dot.mid{border-color:#2e9ed6}
+.cal-legend-dot.high{border-color:#e2a019;background:#fff8e8}
+.booking-day-panel{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:12px}
+.booking-day-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.booking-day-head h4{font-size:15px;font-weight:800;color:var(--text-dark)}
+.booking-day-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.booking-day-item{background:var(--blue-50);border:1px solid var(--border);border-radius:10px;padding:8px}
+.booking-day-item p{font-size:10px;color:var(--text-light);font-weight:700;margin-bottom:3px}
+.booking-day-item strong{font-size:15px;color:var(--text-dark);font-weight:800}
+.booking-day-list{display:flex;flex-direction:column;gap:8px;max-height:330px;overflow:auto}
+.booking-order{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.booking-order h5{font-size:13px;color:var(--text-dark);font-weight:800}
+.booking-order p{font-size:11px;color:var(--text-light);font-weight:600;margin-top:2px}
+.booking-order-amt{font-size:13px;font-weight:800;color:var(--blue-700)}
+.booking-order-status{font-size:10px;font-weight:800;padding:3px 8px;border-radius:999px}
+.booking-order-status.done{background:#e0f5f1;color:#16a085}
+.booking-order-status.pending{background:#fff4e0;color:#c07000}
 
 /* FILTER ROW */
 .filter-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
@@ -323,8 +363,8 @@ tbody tr:hover td{background:var(--blue-50)}
 
 /* BILL LIST */
 .bills-grid{display:grid;grid-template-columns:1fr;gap:14px}
-.bill-card{background:var(--white);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow);border:1px solid var(--border);transition:box-shadow 0.2s;display:grid;grid-template-columns:minmax(0,1fr) 168px;gap:8px;align-items:center}
-.bill-card:hover{box-shadow:0 8px 32px rgba(10,37,64,0.16)}
+.bill-card{background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);border-radius:var(--radius);padding:10px 12px;box-shadow:0 6px 22px rgba(10,37,64,0.10);border:1px solid var(--border);border-left:4px solid var(--blue-400);transition:box-shadow 0.2s,transform 0.2s;display:grid;grid-template-columns:minmax(0,1fr) 168px;gap:8px;align-items:center}
+.bill-card:hover{box-shadow:0 10px 28px rgba(10,37,64,0.14);transform:translateY(-1px)}
 .bill-card-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 10px;min-width:0}
 .bill-info-row{display:flex;align-items:center;gap:6px;min-height:20px}
 .bill-info-row .info-label{color:var(--text-light);font-weight:700;font-size:11px;line-height:1.2;white-space:nowrap}
@@ -333,7 +373,7 @@ tbody tr:hover td{background:var(--blue-50)}
 .bill-info-row--status .info-value{font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:#fff4e0;color:#c07000}
 .bill-info-row--status .info-value.done{background:#e0f5f1;color:#16a085}
 .bill-card-footer{display:grid;grid-template-columns:1fr;gap:6px}
-.bill-card-footer .btn{justify-content:center}
+.bill-card-footer .btn{justify-content:center;padding:7px 10px;font-size:12px}
 .list-filter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .list-filter-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .list-filter-item{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -507,6 +547,7 @@ tbody tr:hover td{background:var(--blue-50)}
   .sidebar-overlay.open{display:block}
   .main{margin-left:0;padding-top:58px}
   .hamburger{display:flex}
+  #desktopSidebarToggle{display:none}
   .topbar{height:58px;padding:0 14px;left:0}
   .topbar-left{gap:8px;min-width:0;flex:1}
   .topbar-right{gap:8px;flex-shrink:0;max-width:56%}
@@ -574,6 +615,9 @@ tbody tr:hover td{background:var(--blue-50)}
   #pageBillList .filter-row input[type=date],
   #pageBillList .filter-row select{padding:8px 10px;font-size:12px}
   #pageBillList .list-filter-actions .btn{padding:9px 12px;font-size:12px;justify-content:center}
+  .booking-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .booking-layout{grid-template-columns:1fr;gap:10px}
+  .booking-day-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .filter-row{flex-direction:column;align-items:stretch}
   .filter-row input,.filter-row select,.filter-row .btn{width:100%}
   .pub-content{padding:16px 10px}
@@ -618,6 +662,9 @@ tbody tr:hover td{background:var(--blue-50)}
   #pageBillList .badge{font-size:10px;padding:3px 8px}
   #pageBillList .list-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   #pageBillList .list-filter-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .booking-day-grid{grid-template-columns:1fr 1fr}
+  .booking-order{grid-template-columns:1fr}
+  .booking-order-amt{text-align:left}
   .bill-edit-grid{grid-template-columns:1fr}
   .list-pagination{justify-content:center}
   #pageDashboard .section-card h3{font-size:13px}
@@ -728,6 +775,7 @@ tbody tr:hover td{background:var(--blue-50)}
     <div class="topbar">
       <div class="topbar-left">
         <button class="hamburger" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+        <button class="sidebar-toggle" id="desktopSidebarToggle" onclick="toggleDesktopSidebar()" aria-label="Thu gọn hoặc mở rộng thanh điều hướng"><i class="fa-solid fa-angles-left"></i></button>
         <div class="page-title" id="pageTitle">Doanh Thu</div>
       </div>
       <div class="topbar-right">
@@ -973,10 +1021,32 @@ tbody tr:hover td{background:var(--blue-50)}
       <!-- BOOKING PAGE -->
       <div class="page" id="pageBooking">
         <div class="section-card">
-          <h3><i class="fa-solid fa-calendar-check"></i> Booking</h3>
-          <div class="booking-placeholder">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            <p>Mục Booking đang được phát triển. Sau này bạn có thể quản lý đặt phòng / tour / lịch dịch vụ tại đây.</p>
+          <h3><i class="fa-solid fa-calendar-check"></i> Booking theo ngày</h3>
+          <div class="booking-stats" id="bookingStats"></div>
+          <div class="booking-layout" style="margin-top:12px">
+            <div class="booking-calendar-wrap">
+              <div class="cal-header">
+                <div class="cal-month" id="bookingMonthLabel">Tháng</div>
+                <div class="cal-nav">
+                  <button type="button" onclick="changeBookingMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button type="button" onclick="goBookingToday()"><i class="fa-solid fa-calendar-day"></i></button>
+                  <button type="button" onclick="changeBookingMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+              </div>
+              <div class="cal-grid" id="bookingCalendarGrid"></div>
+              <div class="cal-legend">
+                <div class="cal-legend-item"><span class="cal-legend-dot low"></span> 1-2 đơn</div>
+                <div class="cal-legend-item"><span class="cal-legend-dot mid"></span> 3-6 đơn</div>
+                <div class="cal-legend-item"><span class="cal-legend-dot high"></span> Trên 6 đơn</div>
+              </div>
+            </div>
+            <div class="booking-day-panel">
+              <div class="booking-day-head">
+                <h4 id="bookingSelectedDateTitle">Đơn theo ngày</h4>
+              </div>
+              <div class="booking-day-grid" id="bookingSelectedStats"></div>
+              <div class="booking-day-list" id="bookingDayList"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1247,6 +1317,8 @@ let listPage = 1;
 let audioCtx = null;
 let revenueChart = null;
 let siteTourIndex = 0;
+let bookingCurrentMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+let bookingSelectedDate = new Date();
 let guideSynth = null;
 let guideAudioReady = false;
 let activeTourTarget = null;
@@ -1264,6 +1336,11 @@ window.onload = function(){
 };
 
 window.addEventListener('resize', ()=>{
+  if(window.innerWidth > 768){
+    applyDesktopSidebarState();
+  } else {
+    document.getElementById('app')?.classList.remove('sidebar-collapsed');
+  }
   if(document.getElementById('pageBillList')?.classList.contains('active')){
     renderBillList();
   }
@@ -1370,6 +1447,7 @@ function doLogout(){
 function showApp(){
   document.getElementById('loginPage').style.display='none';
   document.getElementById('app').style.display='block';
+  applyDesktopSidebarState();
   refreshDashboard();
   requestAnimationFrame(()=>{
     requestAnimationFrame(()=>{
@@ -1400,6 +1478,7 @@ function showPage(p, opts){
   if(nav) nav.classList.add('active');
   if(p==='dashboard') refreshDashboard();
   if(p==='billList') renderBillList(true);
+  if(p==='booking') renderBookingPage();
   if(!opts || !opts.skipClose) closeSidebar();
 }
 
@@ -1410,6 +1489,19 @@ function toggleSidebar(){
 function closeSidebar(){
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('open');
+}
+function applyDesktopSidebarState(){
+  if(window.innerWidth <= 768) return;
+  let collapsed = false;
+  try{ collapsed = localStorage.getItem('tvh_sidebar_collapsed') === '1'; }catch(e){}
+  document.getElementById('app').classList.toggle('sidebar-collapsed', collapsed);
+}
+function toggleDesktopSidebar(){
+  if(window.innerWidth <= 768) return;
+  const app = document.getElementById('app');
+  const next = !app.classList.contains('sidebar-collapsed');
+  app.classList.toggle('sidebar-collapsed', next);
+  try{ localStorage.setItem('tvh_sidebar_collapsed', next ? '1' : '0'); }catch(e){}
 }
 
 // ----- Onboarding & tour -----
@@ -1971,6 +2063,133 @@ function refreshDashboard(){
   document.getElementById('s4').textContent = fmtMoneyCompact(list.reduce((a,b)=>a+b.total,0));
   updateDashboardPeriodHint();
   renderChart();
+  if(document.getElementById('pageBooking')?.classList.contains('active')){
+    renderBookingPage();
+  }
+}
+
+// ============================================================
+// BOOKING CALENDAR
+// ============================================================
+function bookingDateSource(b){
+  return b.time ? new Date(b.time) : new Date(b.createdAt);
+}
+function dayKey(d){
+  return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
+}
+function isSameDate(a,b){
+  return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+}
+function getBookingDayData(date){
+  const k = dayKey(date);
+  const list = bills.filter(b=> dayKey(bookingDateSource(b)) === k);
+  const done = list.filter(x=>x.isDone);
+  const pending = list.filter(x=>!x.isDone);
+  return {
+    list,
+    totalOrders: list.length,
+    doneOrders: done.length,
+    pendingOrders: pending.length,
+    revenue: list.reduce((a,b)=>a + Number(b.total||0),0)
+  };
+}
+function renderBookingStatsCards(){
+  const statsEl = document.getElementById('bookingStats');
+  if(!statsEl) return;
+  const totalRevenue = bills.reduce((a,b)=>a + Number(b.total||0),0);
+  const done = bills.filter(b=>b.isDone).length;
+  const pending = bills.filter(b=>!b.isDone).length;
+  statsEl.innerHTML = `
+    <div class="booking-stat"><p>Doanh thu</p><h4>${fmtMoneyCompact(totalRevenue)}<small> đ</small></h4></div>
+    <div class="booking-stat"><p>Đơn đã hoàn thành</p><h4>${done}</h4></div>
+    <div class="booking-stat"><p>Đơn chưa hoàn thành</p><h4>${pending}</h4></div>
+    <div class="booking-stat"><p>Tổng số đơn</p><h4>${bills.length}</h4></div>
+  `;
+}
+function renderBookingCalendar(){
+  const monthLabel = document.getElementById('bookingMonthLabel');
+  const grid = document.getElementById('bookingCalendarGrid');
+  if(!monthLabel || !grid) return;
+  monthLabel.textContent = 'Tháng ' + (bookingCurrentMonth.getMonth()+1) + '/' + bookingCurrentMonth.getFullYear();
+  const y = bookingCurrentMonth.getFullYear();
+  const m = bookingCurrentMonth.getMonth();
+  const first = new Date(y,m,1);
+  const start = new Date(first);
+  start.setDate(first.getDate() - ((first.getDay()+6)%7));
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const dows = ['T2','T3','T4','T5','T6','T7','CN'];
+  const cells = [];
+  dows.forEach(d=> cells.push(`<div class="cal-dow">${d}</div>`));
+  for(let i=0;i<42;i++){
+    const d = new Date(start);
+    d.setDate(start.getDate()+i);
+    const info = getBookingDayData(d);
+    const cls = ['cal-day'];
+    if(d.getMonth()!==m) cls.push('other');
+    if(isSameDate(d, today)) cls.push('today');
+    if(isSameDate(d, bookingSelectedDate)) cls.push('selected');
+    if(info.totalOrders >= 1 && info.totalOrders <= 2) cls.push('level-low');
+    if(info.totalOrders >= 3 && info.totalOrders <= 6) cls.push('level-mid');
+    if(info.totalOrders > 6) cls.push('level-high');
+    const count = info.totalOrders>0 ? `<span class="cal-day-count">${info.totalOrders}</span>` : '';
+    const highIcon = info.totalOrders>6 ? `<i class="fa-solid fa-crown cal-day-high-icon"></i>` : '';
+    cells.push(`<button type="button" class="${cls.join(' ')}" onclick="selectBookingDate('${dayKey(d)}')">${d.getDate()}${count}${highIcon}</button>`);
+  }
+  grid.innerHTML = cells.join('');
+}
+function renderBookingSelectedDay(){
+  const title = document.getElementById('bookingSelectedDateTitle');
+  const stats = document.getElementById('bookingSelectedStats');
+  const listEl = document.getElementById('bookingDayList');
+  if(!title || !stats || !listEl) return;
+  const info = getBookingDayData(bookingSelectedDate);
+  title.textContent = 'Ngày ' + bookingSelectedDate.toLocaleDateString('vi-VN');
+  stats.innerHTML = `
+    <div class="booking-day-item"><p>Doanh thu</p><strong>${fmtMoneyCompact(info.revenue)}</strong></div>
+    <div class="booking-day-item"><p>Tổng đơn</p><strong>${info.totalOrders}</strong></div>
+    <div class="booking-day-item"><p>Đã hoàn thành</p><strong>${info.doneOrders}</strong></div>
+    <div class="booking-day-item"><p>Đơn cọc/chưa xong</p><strong>${info.pendingOrders}</strong></div>
+  `;
+  if(!info.list.length){
+    listEl.innerHTML = `<div class="booking-order"><div><h5>Không có đơn trong ngày này</h5><p>Hãy chọn ngày khác để xem lịch sử booking.</p></div></div>`;
+    return;
+  }
+  listEl.innerHTML = info.list
+    .sort((a,b)=> bookingDateSource(a)-bookingDateSource(b))
+    .map(b=>`
+      <div class="booking-order">
+        <div>
+          <h5>${escapeHtml(b.customerName||'---')} · ${b.id}</h5>
+          <p>${bookingDateSource(b).toLocaleString('vi-VN')} · ${b.type==='stay'?'Lưu Trú':b.type==='canoe'?'Cano':'Xe Điện'}</p>
+        </div>
+        <div style="text-align:right">
+          <div class="booking-order-amt">${fmtMoneyCompact(b.total)}đ</div>
+          <span class="booking-order-status ${b.isDone?'done':'pending'}">${b.isDone?'Đã hoàn':'Đơn cọc'}</span>
+        </div>
+      </div>
+    `).join('');
+}
+function renderBookingPage(){
+  renderBookingStatsCards();
+  renderBookingCalendar();
+  renderBookingSelectedDay();
+}
+function changeBookingMonth(step){
+  bookingCurrentMonth = new Date(bookingCurrentMonth.getFullYear(), bookingCurrentMonth.getMonth()+step, 1);
+  renderBookingCalendar();
+}
+function goBookingToday(){
+  const now = new Date();
+  bookingCurrentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  bookingSelectedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  renderBookingPage();
+}
+function selectBookingDate(key){
+  const [y,m,d] = key.split('-').map(Number);
+  bookingSelectedDate = new Date(y,m-1,d);
+  bookingCurrentMonth = new Date(y,m-1,1);
+  renderBookingPage();
 }
 
 function renderChart(){
