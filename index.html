@@ -294,11 +294,11 @@ animation:dongsonSpin 26s linear infinite}
 .booking-day-item p{font-size:10px;color:var(--text-light);font-weight:700;margin-bottom:3px}
 .booking-day-item strong{font-size:15px;color:var(--text-dark);font-weight:800}
 .booking-day-list{display:flex;flex-direction:column;gap:8px;max-height:330px;overflow:auto}
-.booking-order{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
-.booking-order h5{font-size:13px;color:var(--text-dark);font-weight:800}
-.booking-order p{font-size:11px;color:var(--text-light);font-weight:600;margin-top:2px}
-.booking-order-amt{font-size:13px;font-weight:800;color:var(--blue-700)}
-.booking-order-status{font-size:10px;font-weight:800;padding:3px 8px;border-radius:999px}
+.booking-order{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.booking-order-main{min-width:0;flex:1}
+.booking-order h5{font-size:13px;color:var(--text-dark);font-weight:800;line-height:1.25}
+.booking-order p{font-size:11px;color:var(--text-light);font-weight:600;margin-top:3px}
+.booking-order-status{flex-shrink:0;font-size:10px;font-weight:800;padding:4px 9px;border-radius:999px}
 .booking-order-status.done{background:#e0f5f1;color:#16a085}
 .booking-order-status.pending{background:#fff4e0;color:#c07000}
 
@@ -402,10 +402,23 @@ tbody tr:hover td{background:var(--blue-50)}
 .list-filter-item{display:flex;flex-direction:column;gap:6px;min-width:0}
 .list-filter-item label{font-size:11px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.4px}
 .list-filter-item input::placeholder{color:#8aa9c2}
-#pageBillList .filter-row{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:14px;align-items:end;margin-bottom:0}
-#pageBillList .list-filter-grid{grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:12px}
-#pageBillList .list-filter-actions{grid-template-columns:1fr;gap:10px}
-#pageBillList .list-filter-actions .btn{width:100%;justify-content:center;min-height:42px}
+.list-search-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,1fr);gap:8px;align-items:stretch;width:100%}
+.list-search-row input[type=tel]{
+  width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;
+  font-family:'Montserrat',sans-serif;font-size:13px;color:var(--text-dark);background:var(--white);outline:none;min-width:0;box-sizing:border-box
+}
+.list-search-row input[type=tel]:focus{border-color:var(--blue-500);box-shadow:0 0 0 3px rgba(46,158,214,0.12)}
+.btn-list-search{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:100%;min-height:40px;padding:0 6px;border:none;border-radius:8px;
+  background:var(--blue-600);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .1s
+}
+.btn-list-search:hover{background:var(--blue-700)}
+.btn-list-search:active{transform:scale(.98)}
+.btn-list-search i{font-size:16px}
+#pageBillList .filter-row{display:block;margin-bottom:0}
+#pageBillList .list-filter-grid{max-width:100%}
 .list-pagination{display:none;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px}
 .list-pagination button{padding:8px 12px;border:none;border-radius:8px;background:var(--blue-100);color:var(--blue-700);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
 .list-pagination button:disabled{opacity:0.45;cursor:not-allowed}
@@ -577,7 +590,7 @@ tbody tr:hover td{background:var(--blue-50)}
   .page-title{font-size:16px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .topbar-date{font-size:11px;padding:5px 10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .avatar{width:34px;height:34px;font-size:13px}
-  .content{padding:12px}
+  .content{padding:12px;padding-bottom:calc(12px + 56px + env(safe-area-inset-bottom,0px))}
   .dashboard-filter-top{padding:14px;margin-bottom:14px}
   .dashboard-period-hint{font-size:12px;padding:9px 12px}
   .dashboard-filter-top .dash-scope-btn{font-size:12px;padding:9px 12px}
@@ -617,17 +630,25 @@ tbody tr:hover td{background:var(--blue-50)}
   .cal-legend-item{font-size:10px}
   .dash-pagination{justify-content:center}
   .form-grid{grid-template-columns:1fr}
-  #pageCreateBill .section-card{padding:14px;max-height:calc(100vh - 170px);overflow:auto}
-  #pageCreateBill .form-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  #pageCreateBill .section-card{padding:12px 10px;margin-bottom:10px;max-height:none;overflow:visible}
+  #pageCreateBill .form-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 8px}
   #pageCreateBill .form-field{min-width:0}
-  #pageCreateBill .form-field label{font-size:11px}
+  #pageCreateBill .form-field label{font-size:10px;letter-spacing:0.35px}
   #pageCreateBill .form-field input,
   #pageCreateBill .form-field select,
-  #pageCreateBill .form-field textarea{padding:9px 10px;font-size:13px}
+  #pageCreateBill .form-field textarea{padding:7px 9px;font-size:12px;border-radius:8px}
+  #pageCreateBill .form-field textarea{min-height:52px}
+  #pageCreateBill .section-card h3{font-size:13px;margin-bottom:8px}
+  #pageCreateBill .bill-tabs{margin-bottom:10px;gap:5px}
+  #pageCreateBill .bill-tab{padding:7px 10px;font-size:11px}
+  #pageCreateBill .section-divider{margin:10px 0}
+  #pageCreateBill .combo-box{padding:7px;margin-top:6px}
+  #pageCreateBill .combo-head .btn-sm{display:none}
+  #pageCreateBill .upload-area{padding:10px 8px}
+  #pageCreateBill .upload-area i{font-size:18px;margin-bottom:4px}
+  #pageCreateBill .form-actions{margin-top:10px;gap:8px}
+  #pageCreateBill .form-actions .btn{padding:8px 12px;font-size:12px}
   .combo-item-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  #pageCreateBill .upload-area{padding:12px}
-  #pageCreateBill .upload-area i{font-size:20px}
-  #pageCreateBill .upload-area p{font-size:11px}
   #pageCreateBill .form-actions{position:static;background:transparent;padding-top:0;margin-top:14px}
   #pageBillList .bills-grid{grid-template-columns:1fr;gap:12px}
   #pageBillList .bill-card{grid-template-columns:minmax(0,1fr) auto;gap:7px;padding:10px}
@@ -637,7 +658,6 @@ tbody tr:hover td{background:var(--blue-50)}
   #pageBillList .list-filter-grid{grid-template-columns:1fr;gap:8px}
   #pageBillList .filter-row input[type=date],
   #pageBillList .filter-row select{padding:8px 10px;font-size:12px}
-  #pageBillList .list-filter-actions .btn{padding:9px 12px;font-size:12px;justify-content:center}
   .booking-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .booking-layout{grid-template-columns:1fr;gap:10px}
   .booking-day-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -667,11 +687,10 @@ tbody tr:hover td{background:var(--blue-50)}
   .topbar-right{max-width:60%}
   .topbar-date{max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .page-title{font-size:15px;max-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .content{padding:10px}
   .stat-grid{gap:8px}
   .section-card{padding:14px}
   #pageCreateBill .form-grid{grid-template-columns:1fr}
-  #pageCreateBill .section-card{max-height:calc(100vh - 156px)}
+  #pageCreateBill .section-card{max-height:none;overflow:visible}
   #pageBillList .bills-grid{grid-template-columns:1fr;gap:10px}
   #pageBillList .bill-card{padding:12px;display:grid;height:auto}
   #pageBillList .bill-card-main{gap:4px 6px}
@@ -682,11 +701,7 @@ tbody tr:hover td{background:var(--blue-50)}
   #pageBillList .bill-detail-icon{width:30px;height:30px}
   .bill-detail-actions{grid-template-columns:repeat(4,minmax(0,1fr));overflow-x:auto}
   #pageBillList .badge{font-size:10px;padding:3px 8px}
-  #pageBillList .list-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  #pageBillList .list-filter-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .booking-day-grid{grid-template-columns:1fr 1fr}
-  .booking-order{grid-template-columns:1fr}
-  .booking-order-amt{text-align:left}
   .bill-edit-grid{grid-template-columns:1fr}
   .combo-item-grid{grid-template-columns:1fr}
   .list-pagination{justify-content:center}
@@ -702,6 +717,101 @@ tbody tr:hover td{background:var(--blue-50)}
   .bill-tabs{gap:6px}
   .bill-tab{padding:8px 14px;font-size:12px}
   .modal{padding:20px}
+  .content{padding:10px;padding-bottom:calc(10px + 56px + env(safe-area-inset-bottom,0px))}
+}
+/* —— Mobile dock, FAB tạo bill, hiệu ứng chuyển tab —— */
+.mobile-dock{display:none}
+.create-bill-slide-inner{position:relative}
+.create-bill-slide-inner.bill-slide-out{opacity:0;transform:scale(.97) translateY(8px);transition:opacity .2s ease,transform .26s cubic-bezier(.25,.8,.25,1)}
+.create-bill-slide-inner.bill-slide-in{animation:billSlideIn .38s cubic-bezier(.22,1,.36,1) both}
+@keyframes billSlideIn{
+  from{opacity:0;transform:translateY(12px) scale(.98)}
+  to{opacity:1;transform:none}
+}
+#createBillFab.create-bill-fab{display:none}
+#pageCreateBill.active #createBillFab.create-bill-fab{display:flex}
+.create-bill-fab{
+  position:fixed;right:14px;bottom:calc(58px + env(safe-area-inset-bottom,0px));
+  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;z-index:94;
+  align-items:center;justify-content:center;font-size:26px;color:#fff;
+  background:linear-gradient(145deg,#45c2f0,var(--blue-700));
+  box-shadow:0 10px 28px rgba(30,122,173,0.45);
+  transition:transform .18s,box-shadow .18s;
+}
+#createBillFab.create-bill-fab:active{transform:scale(.94)}
+@media(min-width:769px){
+  #pageCreateBill.active #createBillFab.create-bill-fab{bottom:28px;right:22px}
+}
+.quick-add-grid{display:grid;gap:10px;margin-top:10px}
+.quick-add-option{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-radius:14px;border:1.5px solid var(--border);background:var(--blue-50);cursor:pointer;font:inherit;text-align:left;font-weight:700;color:var(--text-dark);transition:background .2s,border-color .2s}
+.quick-add-option i{font-size:20px;color:var(--blue-600);width:28px;text-align:center}
+.quick-add-option:hover{border-color:var(--blue-400);background:#fff}
+@media(max-width:768px){
+  .mobile-dock{
+    display:block;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:96;
+    padding:0 0 env(safe-area-inset-bottom,0px);
+    margin:0;
+    border-radius:0;
+    border:none;
+    background:transparent;
+    box-shadow:none;
+    filter:drop-shadow(0 -6px 18px rgba(10,37,64,0.1));
+  }
+  .mobile-dock-shape{
+    display:block;
+    width:100%;
+    height:56px;
+    vertical-align:bottom;
+    pointer-events:none;
+  }
+  .mobile-dock-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    margin-top:-56px;
+    min-height:56px;
+    padding:0 max(4px,env(safe-area-inset-left,0px)) 6px max(4px,env(safe-area-inset-right,0px));
+    box-sizing:border-box;
+    position:relative;
+    z-index:1;
+  }
+  .mobile-dock-row .dock-item{pointer-events:auto}
+  .mobile-dock .dock-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+    gap:2px;min-width:0;padding:4px 1px 2px;background:none;border:none;cursor:pointer;
+    color:var(--text-light);font-family:inherit;font-size:9px;font-weight:700;
+    border-radius:12px;transition:background .2s,color .2s,transform .15s;
+  }
+  .mobile-dock .dock-item i{font-size:17px;line-height:1}
+  .mobile-dock .dock-item span{display:block;line-height:1.05;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 1px}
+  .mobile-dock .dock-item.on{color:var(--blue-700);background:rgba(46,158,214,0.12)}
+  .mobile-dock .dock-item:active{transform:scale(.96)}
+  .mobile-dock .dock-home{
+    flex:0 0 auto;
+    width:auto;
+    min-width:52px;
+    padding:2px 6px 3px;
+    margin:0;
+    background:transparent;
+    color:var(--text-light);
+    border-radius:14px;
+    box-shadow:none;
+    transform:none;
+    justify-content:center;
+  }
+  .mobile-dock .dock-home i{
+    font-size:27px;
+    line-height:1;
+  }
+  .mobile-dock .dock-home:not(.on) i{color:var(--text-mid)}
+  .mobile-dock .dock-home.on{background:rgba(46,158,214,0.12)}
+  .mobile-dock .dock-home.on i{color:var(--blue-800)}
+  .mobile-dock .dock-home span{display:none}
 }
 </style>
 </head>
@@ -881,11 +991,11 @@ tbody tr:hover td{background:var(--blue-50)}
       <!-- CREATE BILL PAGE -->
       <div class="page" id="pageCreateBill">
         <div class="bill-tabs" id="tourBillTabs">
-          <button class="bill-tab active" onclick="switchTab('stay')"><i class="fa-solid fa-bed"></i> Lưu Trú</button>
-          <button class="bill-tab" onclick="switchTab('canoe')"><i class="fa-solid fa-sailboat"></i> Cano</button>
-          <button class="bill-tab" onclick="switchTab('ev')"><i class="fa-solid fa-bolt"></i> Xe Điện</button>
+          <button type="button" class="bill-tab active" onclick="switchTabSlide('stay')"><i class="fa-solid fa-bed"></i> Lưu Trú</button>
+          <button type="button" class="bill-tab" onclick="switchTabSlide('canoe')"><i class="fa-solid fa-sailboat"></i> Cano</button>
+          <button type="button" class="bill-tab" onclick="switchTabSlide('ev')"><i class="fa-solid fa-bolt"></i> Xe Điện</button>
         </div>
-
+        <div class="create-bill-slide-inner" id="createBillSlideInner">
         <!-- Lưu Trú -->
         <div id="tabStay">
           <div class="section-card">
@@ -1014,6 +1124,8 @@ tbody tr:hover td{background:var(--blue-50)}
             </div>
           </div>
         </div>
+        </div>
+        <button type="button" class="create-bill-fab" id="createBillFab" onclick="openQuickAddServiceModal()" aria-label="Thêm dịch vụ hoặc chuyển form"><i class="fa-solid fa-plus"></i></button>
       </div>
 
       <!-- BILL LIST PAGE -->
@@ -1023,10 +1135,10 @@ tbody tr:hover td{background:var(--blue-50)}
             <div class="list-filter-grid">
               <div class="list-filter-item">
                 <label for="listPhone">Số điện thoại</label>
-                <input type="tel" id="listPhone" placeholder="Tìm theo SĐT" inputmode="tel" oninput="renderBillList(true)">
-              </div>
-              <div class="list-filter-actions">
-                <button class="btn btn-primary" onclick="renderBillList(true)"><i class="fa-solid fa-magnifying-glass"></i> Tìm Kiếm</button>
+                <div class="list-search-row">
+                  <input type="tel" id="listPhone" placeholder="Tìm theo SĐT" inputmode="tel" oninput="renderBillList(true)" onkeypress="if(event.key==='Enter')renderBillList(true)">
+                  <button type="button" class="btn-list-search" onclick="renderBillList(true)" aria-label="Tìm kiếm"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                </div>
               </div>
             </div>
 
@@ -1226,6 +1338,26 @@ tbody tr:hover td{background:var(--blue-50)}
       </div>
 
     </div>
+
+    <nav class="mobile-dock" id="mobileDock" aria-label="Thanh điều hướng nhanh">
+      <svg class="mobile-dock-shape" viewBox="0 0 400 56" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="mobileDockFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#f2f9fc"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#mobileDockFill)" stroke="rgba(197,223,240,0.95)" stroke-width="0.5" vector-effect="non-scaling-stroke"
+          d="M0,56 L0,14 L148,14 Q200,2 252,14 L400,14 L400,56 Z"/>
+      </svg>
+      <div class="mobile-dock-row">
+        <button type="button" class="dock-item" data-dock="dashboard" onclick="showPage('dashboard')"><i class="fa-solid fa-dice" aria-hidden="true"></i><span>Doanh thu</span></button>
+        <button type="button" class="dock-item" data-dock="booking" onclick="showPage('booking')"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i><span>Lịch</span></button>
+        <button type="button" class="dock-item dock-home" data-dock="home" onclick="mobileDockGoHome()" aria-label="Về trang chủ — Doanh thu"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Trang chủ</span></button>
+        <button type="button" class="dock-item" data-dock="createBill" onclick="showPage('createBill')"><i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i><span>Tạo đơn</span></button>
+        <button type="button" class="dock-item" data-dock="holdBill" onclick="showPage('holdBill')"><i class="fa-solid fa-box-archive" aria-hidden="true"></i><span>Giữ bill</span></button>
+      </div>
+    </nav>
   </div>
 </div>
 
@@ -1277,6 +1409,37 @@ tbody tr:hover td{background:var(--blue-50)}
     <div style="display:flex;gap:10px;justify-content:flex-end">
       <button class="btn btn-secondary" onclick="closeModal('deleteModal')">Hủy</button>
       <button class="btn btn-danger" id="confirmDeleteBtn">Xóa Bill</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Thoát app (nút Back thiết bị) -->
+<div class="modal-overlay" id="exitConfirmModal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-door-open" style="color:var(--blue-500)"></i> Rời khỏi trang?</h3>
+      <button type="button" class="modal-close" onclick="exitConfirmStay()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p style="font-size:14px;color:var(--text-mid);font-weight:600;line-height:1.5;margin-bottom:20px">Bạn có muốn thoát khỏi hệ thống? Dữ liệu hóa đơn đã lưu vẫn nằm trên thiết bị này.</p>
+    <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap">
+      <button type="button" class="btn btn-secondary" onclick="exitConfirmLeave()">Rời đi</button>
+      <button type="button" class="btn btn-primary" onclick="exitConfirmStay()">Ở lại</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Thêm dịch vụ / chuyển form (nút +) -->
+<div class="modal-overlay" id="quickAddServiceModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-plus" style="color:var(--blue-500)"></i> Thêm hoặc chuyển form</h3>
+      <button type="button" class="modal-close" onclick="closeModal('quickAddServiceModal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p style="font-size:13px;color:var(--text-light);font-weight:600;margin-bottom:4px">Chọn hành động — có thể tự điền họ tên, SĐT và thời gian từ tab Lưu trú nếu đã nhập.</p>
+    <div class="quick-add-grid">
+      <button type="button" class="quick-add-option" onclick="quickAddChoose('canoe')"><i class="fa-solid fa-sailboat"></i><span>Mở form Cano</span></button>
+      <button type="button" class="quick-add-option" onclick="quickAddChoose('ev')"><i class="fa-solid fa-bolt"></i><span>Mở form Xe điện</span></button>
+      <button type="button" class="quick-add-option" onclick="quickAddChoose('combo')"><i class="fa-solid fa-link"></i><span>Thêm dòng dịch vụ kết hợp (tab đang mở)</span></button>
     </div>
   </div>
 </div>
@@ -1358,6 +1521,7 @@ let bookingSelectedDate = new Date();
 let guideSynth = null;
 let guideAudioReady = false;
 let activeTourTarget = null;
+let tvhBackGuardActive = false;
 
 const USERS = [{u:'admin', p:'admin123'}, {u:'tungvinhhy', p:'123zxc123'}];
 
@@ -1400,13 +1564,22 @@ function checkPublicView(){
 
 function loadData(){
   try{
-    const d = getCookie('tvhBills');
+    let d = getCookie('tvhBills');
+    if(!d || d==='[]'){
+      try{ d = localStorage.getItem('tvhBills_mirror') || ''; }catch(e){}
+    }
+    if(!d || d==='[]'){
+      try{ d = sessionStorage.getItem('tvhBills_mirror') || ''; }catch(e){}
+    }
     bills = d ? JSON.parse(d) : [];
   }catch(e){bills=[];}
 }
 
 function saveData(){
-  setCookie('tvhBills', JSON.stringify(bills), 365);
+  const s = JSON.stringify(bills);
+  setCookie('tvhBills', s, 365);
+  try{ localStorage.setItem('tvhBills_mirror', s); }catch(e){}
+  try{ sessionStorage.setItem('tvhBills_mirror', s); }catch(e){}
 }
 
 // ============================================================
@@ -1473,6 +1646,7 @@ function doLogin(){
 }
 
 function doLogout(){
+  disableAppBackGuard();
   deleteCookie('tvhAuth');
   document.getElementById('app').style.display='none';
   document.getElementById('loginPage').style.display='flex';
@@ -1495,6 +1669,8 @@ function showApp(){
       }catch(e){}
     });
   });
+  enableAppBackGuard();
+  updateMobileDockActive('dashboard');
 }
 
 // ============================================================
@@ -1524,6 +1700,62 @@ function showPage(p, opts){
   if(p==='holdBill') renderHoldBillList();
   if(p==='booking') renderBookingPage();
   if(!opts || !opts.skipClose) closeSidebar();
+  updateMobileDockActive(p);
+}
+
+function mobileDockGoHome(){
+  showPage('dashboard');
+}
+
+function updateMobileDockActive(pageKey){
+  const dock = document.getElementById('mobileDock');
+  if(!dock) return;
+  dock.querySelectorAll('.dock-item').forEach(btn=>{
+    const d = btn.getAttribute('data-dock');
+    let on = false;
+    if(pageKey==='dashboard'){
+      on = (d==='dashboard' || d==='home');
+    }else if(d && d!=='home'){
+      on = (d===pageKey);
+    }
+    btn.classList.toggle('on', on);
+  });
+}
+
+function enableAppBackGuard(){
+  if(tvhBackGuardActive) return;
+  tvhBackGuardActive = true;
+  try{ history.pushState({tvhApp:1}, '', window.location.href); }catch(e){}
+  window.addEventListener('popstate', onTvhAppPopState);
+}
+function disableAppBackGuard(){
+  if(!tvhBackGuardActive) return;
+  tvhBackGuardActive = false;
+  window.removeEventListener('popstate', onTvhAppPopState);
+}
+function onTvhAppPopState(){
+  const login = document.getElementById('loginPage');
+  const app = document.getElementById('app');
+  const pub = document.getElementById('publicBill');
+  if(login && login.style.display !== 'none') return;
+  if(!app || app.style.display === 'none') return;
+  if(pub && pub.style.display === 'block') return;
+  try{ history.pushState({tvhApp:1}, '', window.location.href); }catch(e){}
+  if(document.getElementById('exitConfirmModal')?.classList.contains('open')) return;
+  openModal('exitConfirmModal');
+}
+function exitConfirmStay(){
+  closeModal('exitConfirmModal');
+}
+function exitConfirmLeave(){
+  closeModal('exitConfirmModal');
+  disableAppBackGuard();
+  try{ history.back(); }catch(e){}
+  setTimeout(()=>{
+    if(document.getElementById('app')?.style.display !== 'none'){
+      doLogout();
+    }
+  }, 120);
 }
 
 function setBillNavSubmenu(open){
@@ -1777,6 +2009,68 @@ function switchTab(t){
     el.classList.toggle('active', tabs[i]===t);
   });
   renderExtraServices(t);
+}
+
+function syncSharedCustomerFieldsTo(targetTab){
+  if(!['stay','canoe','ev'].includes(targetTab)) return;
+  const order = ['stay','canoe','ev'];
+  let sourceTab = null;
+  for(const tab of order){
+    const name = document.getElementById(tab+'_cust_name')?.value?.trim();
+    const phone = document.getElementById(tab+'_cust_phone')?.value?.trim();
+    const timeId = tab==='stay' ? 'stay_time' : tab+'_time';
+    const time = document.getElementById(timeId)?.value?.trim();
+    if(name || phone || time){ sourceTab = tab; break; }
+  }
+  if(!sourceTab || sourceTab === targetTab) return;
+  const sn = document.getElementById(sourceTab+'_cust_name')?.value?.trim() || '';
+  const sp = document.getElementById(sourceTab+'_cust_phone')?.value?.trim() || '';
+  const stElId = sourceTab==='stay' ? 'stay_time' : sourceTab+'_time';
+  const st = document.getElementById(stElId)?.value?.trim() || '';
+  const tn = document.getElementById(targetTab+'_cust_name');
+  const tp = document.getElementById(targetTab+'_cust_phone');
+  const ttId = targetTab==='stay' ? 'stay_time' : targetTab+'_time';
+  const tt = document.getElementById(ttId);
+  if(tn && !String(tn.value||'').trim() && sn) tn.value = sn;
+  if(tp && !String(tp.value||'').trim() && sp) tp.value = sp;
+  if(tt && !String(tt.value||'').trim() && st) tt.value = st;
+}
+
+function switchTabSlide(t){
+  if(t===currentTab) return;
+  const inner = document.getElementById('createBillSlideInner');
+  const go = ()=>{
+    syncSharedCustomerFieldsTo(t);
+    switchTab(t);
+  };
+  if(!inner || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    go();
+    return;
+  }
+  inner.classList.remove('bill-slide-in');
+  inner.classList.add('bill-slide-out');
+  setTimeout(()=>{
+    go();
+    inner.classList.remove('bill-slide-out');
+    void inner.offsetWidth;
+    inner.classList.add('bill-slide-in');
+    setTimeout(()=>inner.classList.remove('bill-slide-in'), 440);
+  }, 210);
+}
+
+function openQuickAddServiceModal(){
+  openModal('quickAddServiceModal');
+}
+
+function quickAddChoose(mode){
+  closeModal('quickAddServiceModal');
+  if(mode==='combo'){
+    addExtraService(currentTab);
+    return;
+  }
+  if(mode==='canoe' || mode==='ev'){
+    setTimeout(()=>switchTabSlide(mode), 140);
+  }
 }
 
 function addExtraService(type){
@@ -2284,21 +2578,18 @@ function renderBookingSelectedDay(){
     <div class="booking-day-item"><p>Đơn cọc/chưa xong</p><strong>${info.pendingOrders}</strong></div>
   `;
   if(!info.list.length){
-    listEl.innerHTML = `<div class="booking-order"><div><h5>Không có đơn trong ngày này</h5><p>Hãy chọn ngày khác để xem lịch sử booking.</p></div></div>`;
+    listEl.innerHTML = `<div class="booking-order"><div class="booking-order-main"><h5>Không có đơn trong ngày này</h5><p>Hãy chọn ngày khác để xem lịch sử booking.</p></div></div>`;
     return;
   }
   listEl.innerHTML = info.list
     .sort((a,b)=> bookingDateSource(a)-bookingDateSource(b))
     .map(b=>`
       <div class="booking-order">
-        <div>
+        <div class="booking-order-main">
           <h5>${escapeHtml(b.customerName||'---')} · ${b.id}</h5>
-          <p>${bookingDateSource(b).toLocaleString('vi-VN')} · ${b.type==='stay'?'Lưu Trú':b.type==='canoe'?'Cano':'Xe Điện'}</p>
+          <p>${b.type==='stay'?'Lưu Trú':b.type==='canoe'?'Cano':'Xe Điện'}</p>
         </div>
-        <div style="text-align:right">
-          <div class="booking-order-amt">${fmtMoneyCompact(b.total)}đ</div>
-          <span class="booking-order-status ${b.isDone?'done':'pending'}">${b.isDone?'Đã hoàn':'Đơn cọc'}</span>
-        </div>
+        <span class="booking-order-status ${b.isDone?'done':'pending'}">${b.isDone?'Đã hoàn':'Đơn cọc'}</span>
       </div>
     `).join('');
 }
