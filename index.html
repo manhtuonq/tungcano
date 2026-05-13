@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>Tùng Vĩnh Hy - Quản Lý Bill</title>
 <meta name="description" content="Hệ Thống Quản Lý Hóa Đơn - Tùng Vĩnh Hy">
 <meta property="og:title" content="Tùng Vĩnh Hy - Quản Lý Bill">
@@ -904,6 +904,11 @@ tbody tr:hover td{background:var(--blue-50)}
   .mobile-dock .dock-home.on i{color:var(--blue-800)}
   .mobile-dock .dock-home span{display:none}
 }
+@media(max-width:768px) and (hover:none) and (pointer:coarse){
+  :root{
+    --mobile-dock-bottom-fill:max(env(safe-area-inset-bottom,0px),var(--vv-layout-nav-gap,0px),40px);
+  }
+}
 </style>
 </head>
 <body>
@@ -1775,12 +1780,14 @@ function showApp(){
   enableAppBackGuard();
   updateMobileDockActive('dashboard');
   syncVvNavGap();
+  requestAnimationFrame(function(){ syncVvNavGap(); requestAnimationFrame(syncVvNavGap); });
   setTimeout(function(){
     if(document.getElementById('loginPage')?.style.display !== 'none') return;
     if(document.getElementById('app')?.style.display === 'none') return;
     rearmAppBackGuard();
     syncVvNavGap();
   }, 380);
+  setTimeout(syncVvNavGap, 900);
 }
 
 // ============================================================
@@ -1819,7 +1826,8 @@ function mobileDockGoHome(){
 
 function initMobileDockInsetSync(){
   syncVvNavGap();
-  [120, 450, 1200].forEach(function(t){ setTimeout(syncVvNavGap, t); });
+  requestAnimationFrame(function(){ syncVvNavGap(); requestAnimationFrame(syncVvNavGap); });
+  [120, 450, 1200, 2200].forEach(function(t){ setTimeout(syncVvNavGap, t); });
   if(window.visualViewport){
     window.visualViewport.addEventListener('resize', syncVvNavGap, {passive:true});
     window.visualViewport.addEventListener('scroll', syncVvNavGap, {passive:true});
@@ -1827,15 +1835,39 @@ function initMobileDockInsetSync(){
   window.addEventListener('orientationchange', function(){
     setTimeout(syncVvNavGap, 400);
   }, {passive:true});
+  let _dockSyncScrollT = 0;
+  window.addEventListener('scroll', function(){
+    if(window.innerWidth > 768) return;
+    const n = Date.now();
+    if(n - _dockSyncScrollT < 180) return;
+    _dockSyncScrollT = n;
+    syncVvNavGap();
+  }, {passive:true,capture:true});
 }
 function syncVvNavGap(){
-  if(!window.visualViewport || window.innerWidth > 768){
+  if(window.innerWidth > 768){
     try{ document.documentElement.style.removeProperty('--vv-layout-nav-gap'); }catch(e){}
     return;
   }
-  const vv = window.visualViewport;
-  const gap = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
-  if(gap > 2){
+  const ih = window.innerHeight || document.documentElement.clientHeight || 0;
+  let gap = 0;
+  if(window.visualViewport){
+    const vv = window.visualViewport;
+    gap = Math.max(gap, Math.max(0, Math.round(ih - vv.height - vv.offsetTop)));
+  }
+  const dock = document.getElementById('mobileDock');
+  if(dock){
+    try{
+      const cs = window.getComputedStyle(dock);
+      if(cs.display !== 'none'){
+        const r = dock.getBoundingClientRect();
+        if(r.height > 0){
+          gap = Math.max(gap, Math.max(0, Math.ceil(ih - r.bottom)));
+        }
+      }
+    }catch(e){}
+  }
+  if(gap > 0){
     try{ document.documentElement.style.setProperty('--vv-layout-nav-gap', gap + 'px'); }catch(e){}
   }else{
     try{ document.documentElement.style.removeProperty('--vv-layout-nav-gap'); }catch(e){}
@@ -1862,10 +1894,10 @@ function enableAppBackGuard(){
   tvhBackGuardActive = true;
   const url = window.location.href;
   try{
-    history.replaceState({tvhG:0}, '', url);
     history.pushState({tvhG:1}, '', url);
+    history.pushState({tvhG:2}, '', url);
   }catch(e){}
-  window.addEventListener('popstate', onTvhAppPopState, false);
+  window.addEventListener('popstate', onTvhAppPopState, true);
 }
 function rearmAppBackGuard(){
   if(document.getElementById('loginPage')?.style.display !== 'none') return;
@@ -1876,7 +1908,7 @@ function rearmAppBackGuard(){
 function disableAppBackGuard(){
   if(!tvhBackGuardActive) return;
   tvhBackGuardActive = false;
-  window.removeEventListener('popstate', onTvhAppPopState, false);
+  window.removeEventListener('popstate', onTvhAppPopState, true);
 }
 function onTvhAppPopState(){
   const login = document.getElementById('loginPage');
@@ -1888,7 +1920,7 @@ function onTvhAppPopState(){
   const url = window.location.href;
   const exitModal = document.getElementById('exitConfirmModal');
   const exitOpen = exitModal?.classList.contains('open');
-  try{ history.pushState({tvhG:1}, '', url); }catch(e){}
+  try{ history.pushState({tvhG:2}, '', url); }catch(e){}
   if(exitOpen){
     closeModal('exitConfirmModal');
     return;
@@ -1897,13 +1929,13 @@ function onTvhAppPopState(){
 }
 function exitConfirmStay(){
   closeModal('exitConfirmModal');
-  try{ history.pushState({tvhG:1}, '', window.location.href); }catch(e){}
+  try{ history.pushState({tvhG:2}, '', window.location.href); }catch(e){}
 }
 function exitConfirmLeave(){
   closeModal('exitConfirmModal');
   disableAppBackGuard();
   try{
-    history.go(-1);
+    history.go(-2);
   }catch(e){}
   setTimeout(()=>{
     if(document.getElementById('app')?.style.display !== 'none'){
