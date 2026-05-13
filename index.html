@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tùng Vĩnh Hy - Quản Lý Bill</title>
 <meta name="description" content="Hệ Thống Quản Lý Hóa Đơn - Tùng Vĩnh Hy">
 <meta property="og:title" content="Tùng Vĩnh Hy - Quản Lý Bill">
@@ -47,8 +47,8 @@
 --radius:14px;
 --sidebar:260px
 }
-body{font-family:'Montserrat',sans-serif;background:var(--blue-50);color:var(--text-dark);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-text-size-adjust:100%}
-html{overflow-x:hidden}
+body{font-family:'Montserrat',sans-serif;background:var(--blue-50);color:var(--text-dark);min-height:100vh;min-height:100dvh;overflow-x:hidden;overflow-y:visible;-webkit-text-size-adjust:100%}
+html{overflow-x:hidden;overflow-y:auto}
 
 /* ===== WAVES BG ===== */
 .wave-bg{position:fixed;bottom:0;left:0;width:100%;pointer-events:none;z-index:0;opacity:0.18}
@@ -574,7 +574,7 @@ tbody tr:hover td{background:var(--blue-50)}
 
 /* Tour từng bước */
 .site-tour-root{position:fixed;inset:0;z-index:10001;display:none}
-.site-tour-root.open{display:block}
+.site-tour-root.open{display:block;pointer-events:none}
 .site-tour-dim{position:absolute;z-index:1;background:rgba(10,37,64,0.38);backdrop-filter:blur(4px);pointer-events:none}
 .site-tour-hole{position:absolute;z-index:2;border-radius:14px;border:2px solid rgba(255,255,255,0.95);box-shadow:0 0 0 2px rgba(46,158,214,0.95),0 0 28px rgba(142,205,232,0.88),0 0 0 4000px rgba(10,37,64,0.64);background:transparent;backdrop-filter:none;pointer-events:none;transition:top 0.35s ease,left 0.35s ease,width 0.35s ease,height 0.35s ease,opacity 0.25s ease;opacity:0}
 .site-tour-hole.visible{opacity:1}
@@ -665,7 +665,7 @@ tbody tr:hover td{background:var(--blue-50)}
   .page-title{font-size:16px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .topbar-date{font-size:11px;padding:5px 10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .avatar{width:34px;height:34px;font-size:13px}
-  .content{padding:12px;padding-bottom:calc(12px + 56px + env(safe-area-inset-bottom,0px))}
+  .content{padding:12px;padding-bottom:calc(12px + 56px + var(--mobile-dock-bottom-fill, env(safe-area-inset-bottom,0px)))}
   .dashboard-filter-top{padding:14px;margin-bottom:14px}
   .dashboard-period-hint{font-size:12px;padding:9px 12px}
   .dashboard-filter-top .dash-scope-btn{font-size:12px;padding:9px 12px}
@@ -683,7 +683,7 @@ tbody tr:hover td{background:var(--blue-50)}
   .chart-controls select{padding:6px 8px;font-size:11px}
   .chart-note{font-size:10px}
   .table-wrap{margin:0 -4px;padding:0 4px}
-  #pageDashboard .section-card{margin-bottom:14px;overflow:hidden}
+  #pageDashboard .section-card{margin-bottom:14px}
   #pageDashboard .filter-row{gap:8px;margin-bottom:10px}
   #pageDashboard .dashboard-filter-grid{gap:8px}
   #pageDashboard .filter-row input[type=date],
@@ -792,7 +792,7 @@ tbody tr:hover td{background:var(--blue-50)}
   .bill-tabs{gap:6px}
   .bill-tab{padding:8px 14px;font-size:12px}
   .modal{padding:20px}
-  .content{padding:10px;padding-bottom:calc(10px + 56px + env(safe-area-inset-bottom,0px))}
+  .content{padding:10px;padding-bottom:calc(10px + 56px + var(--mobile-dock-bottom-fill, env(safe-area-inset-bottom,0px)))}
 }
 /* —— Mobile dock, FAB tạo bill, hiệu ứng chuyển tab —— */
 .mobile-dock{display:none}
@@ -806,7 +806,7 @@ tbody tr:hover td{background:var(--blue-50)}
 #createBillFab.create-bill-fab{display:none}
 #pageCreateBill.active #createBillFab.create-bill-fab{display:flex}
 .create-bill-fab{
-  position:fixed;right:14px;bottom:calc(58px + env(safe-area-inset-bottom,0px));
+  position:fixed;right:14px;bottom:calc(58px + var(--mobile-dock-bottom-fill, env(safe-area-inset-bottom,0px)));
   width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;z-index:94;
   align-items:center;justify-content:center;font-size:26px;color:#fff;
   background:linear-gradient(145deg,#45c2f0,var(--blue-700));
@@ -822,6 +822,9 @@ tbody tr:hover td{background:var(--blue-50)}
 .quick-add-option i{font-size:20px;color:var(--blue-600);width:28px;text-align:center}
 .quick-add-option:hover{border-color:var(--blue-400);background:#fff}
 @media(max-width:768px){
+  :root{
+    --mobile-dock-bottom-fill:max(env(safe-area-inset-bottom,0px),var(--vv-layout-nav-gap,0px),22px);
+  }
   .mobile-dock{
     display:block;
     position:fixed;
@@ -832,7 +835,6 @@ tbody tr:hover td{background:var(--blue-50)}
     max-width:100%;
     z-index:96;
     padding:0;
-    padding-bottom:env(safe-area-inset-bottom,0px);
     margin:0;
     border-radius:0;
     border:none;
@@ -842,6 +844,14 @@ tbody tr:hover td{background:var(--blue-50)}
     -webkit-transform:translateZ(0);
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
+  }
+  .mobile-dock::after{
+    content:'';
+    display:block;
+    height:var(--mobile-dock-bottom-fill);
+    flex-shrink:0;
+    pointer-events:none;
+    background:#fff;
   }
   .mobile-dock-shape{
     display:block;
@@ -1614,6 +1624,7 @@ window.onload = function(){
   loadData();
   checkAutoLogin();
   checkPublicView();
+  initMobileDockInsetSync();
 };
 window.addEventListener('pageshow', function(ev){
   if(!ev.persisted) return;
@@ -1623,6 +1634,7 @@ window.addEventListener('pageshow', function(ev){
   if(!app || app.style.display === 'none') return;
   disableAppBackGuard();
   enableAppBackGuard();
+  syncVvNavGap();
 });
 
 window.addEventListener('resize', ()=>{
@@ -1637,6 +1649,7 @@ window.addEventListener('resize', ()=>{
   if(document.getElementById('siteTourRoot')?.classList.contains('open')){
     applySiteTourStep('silent');
   }
+  syncVvNavGap();
 });
 
 function setTodayDate(){
@@ -1761,6 +1774,13 @@ function showApp(){
   });
   enableAppBackGuard();
   updateMobileDockActive('dashboard');
+  syncVvNavGap();
+  setTimeout(function(){
+    if(document.getElementById('loginPage')?.style.display !== 'none') return;
+    if(document.getElementById('app')?.style.display === 'none') return;
+    rearmAppBackGuard();
+    syncVvNavGap();
+  }, 380);
 }
 
 // ============================================================
@@ -1797,6 +1817,31 @@ function mobileDockGoHome(){
   showPage('dashboard');
 }
 
+function initMobileDockInsetSync(){
+  syncVvNavGap();
+  [120, 450, 1200].forEach(function(t){ setTimeout(syncVvNavGap, t); });
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', syncVvNavGap, {passive:true});
+    window.visualViewport.addEventListener('scroll', syncVvNavGap, {passive:true});
+  }
+  window.addEventListener('orientationchange', function(){
+    setTimeout(syncVvNavGap, 400);
+  }, {passive:true});
+}
+function syncVvNavGap(){
+  if(!window.visualViewport || window.innerWidth > 768){
+    try{ document.documentElement.style.removeProperty('--vv-layout-nav-gap'); }catch(e){}
+    return;
+  }
+  const vv = window.visualViewport;
+  const gap = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+  if(gap > 2){
+    try{ document.documentElement.style.setProperty('--vv-layout-nav-gap', gap + 'px'); }catch(e){}
+  }else{
+    try{ document.documentElement.style.removeProperty('--vv-layout-nav-gap'); }catch(e){}
+  }
+}
+
 function updateMobileDockActive(pageKey){
   const dock = document.getElementById('mobileDock');
   if(!dock) return;
@@ -1817,15 +1862,21 @@ function enableAppBackGuard(){
   tvhBackGuardActive = true;
   const url = window.location.href;
   try{
+    history.replaceState({tvhG:0}, '', url);
     history.pushState({tvhG:1}, '', url);
-    history.pushState({tvhG:2}, '', url);
   }catch(e){}
-  window.addEventListener('popstate', onTvhAppPopState, true);
+  window.addEventListener('popstate', onTvhAppPopState, false);
+}
+function rearmAppBackGuard(){
+  if(document.getElementById('loginPage')?.style.display !== 'none') return;
+  if(document.getElementById('app')?.style.display === 'none') return;
+  disableAppBackGuard();
+  enableAppBackGuard();
 }
 function disableAppBackGuard(){
   if(!tvhBackGuardActive) return;
   tvhBackGuardActive = false;
-  window.removeEventListener('popstate', onTvhAppPopState, true);
+  window.removeEventListener('popstate', onTvhAppPopState, false);
 }
 function onTvhAppPopState(){
   const login = document.getElementById('loginPage');
@@ -1835,24 +1886,24 @@ function onTvhAppPopState(){
   if(!app || app.style.display === 'none') return;
   if(pub && pub.style.display === 'block') return;
   const url = window.location.href;
-  const exitOpen = document.getElementById('exitConfirmModal')?.classList.contains('open');
-  const sealHistory = ()=>{
-    try{ history.pushState({tvhG:2}, '', url); }catch(e){}
-  };
-  requestAnimationFrame(sealHistory);
-  setTimeout(sealHistory, 0);
-  if(exitOpen) return;
+  const exitModal = document.getElementById('exitConfirmModal');
+  const exitOpen = exitModal?.classList.contains('open');
+  try{ history.pushState({tvhG:1}, '', url); }catch(e){}
+  if(exitOpen){
+    closeModal('exitConfirmModal');
+    return;
+  }
   openModal('exitConfirmModal');
 }
 function exitConfirmStay(){
   closeModal('exitConfirmModal');
-  try{ history.pushState({tvhG:2}, '', window.location.href); }catch(e){}
+  try{ history.pushState({tvhG:1}, '', window.location.href); }catch(e){}
 }
 function exitConfirmLeave(){
   closeModal('exitConfirmModal');
   disableAppBackGuard();
   try{
-    history.go(-2);
+    history.go(-1);
   }catch(e){}
   setTimeout(()=>{
     if(document.getElementById('app')?.style.display !== 'none'){
@@ -1931,6 +1982,7 @@ function acceptOnboardingTour(){
 function startSiteTour(){
   siteTourIndex = 0;
   const root = document.getElementById('siteTourRoot');
+  if(!root) return;
   root.classList.add('open');
   root.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
