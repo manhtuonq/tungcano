@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <title>Tùng Vĩnh Hy - Quản Lý Bill</title>
 <meta name="description" content="Hệ Thống Quản Lý Hóa Đơn - Tùng Vĩnh Hy">
 <meta property="og:title" content="Tùng Vĩnh Hy - Quản Lý Bill">
@@ -47,7 +47,7 @@
 --radius:14px;
 --sidebar:260px
 }
-body{font-family:'Montserrat',sans-serif;background:var(--blue-50);color:var(--text-dark);min-height:100vh;overflow-x:hidden}
+body{font-family:'Montserrat',sans-serif;background:var(--blue-50);color:var(--text-dark);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-text-size-adjust:100%}
 html{overflow-x:hidden}
 
 /* ===== WAVES BG ===== */
@@ -193,6 +193,81 @@ animation:dongsonSpin 26s linear infinite}
 #app.sidebar-collapsed .btn-logout{justify-content:center;padding:11px 0}
 #app.sidebar-collapsed .btn-logout span{display:none}
 #app.sidebar-collapsed #desktopSidebarToggle i{transform:rotate(180deg)}
+/* Sidebar thu gọn: căn giữa cột, ô điều hướng đồng kích thước */
+#app.sidebar-collapsed .sidebar-header{display:flex;justify-content:center;padding:16px 8px 14px}
+#app.sidebar-collapsed .sidebar-brand{
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  width:100%;
+}
+#app.sidebar-collapsed .sidebar-brand .b-icon{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  flex-shrink:0;
+}
+#app.sidebar-collapsed .sidebar-brand .b-icon i{font-size:17px}
+#app.sidebar-collapsed .nav-section{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:0 8px;
+  margin-bottom:6px;
+}
+#app.sidebar-collapsed .nav-item{
+  width:100%;
+  max-width:52px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:3px;
+  justify-content:center;
+  padding:10px 0;
+  box-sizing:border-box;
+}
+#app.sidebar-collapsed .nav-item i{
+  width:22px;
+  text-align:center;
+  font-size:16px;
+  margin:0;
+}
+#app.sidebar-collapsed .nav-parent{
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:2px;
+  width:100%;
+  max-width:52px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:10px 0;
+}
+#app.sidebar-collapsed .nav-parent-main{
+  justify-content:center;
+  gap:0;
+}
+#app.sidebar-collapsed .nav-parent-main i{width:22px;text-align:center;font-size:16px}
+#app.sidebar-collapsed .nav-caret{font-size:9px;line-height:1;opacity:0.85}
+#app.sidebar-collapsed .nav-sub.open{
+  margin-left:0;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+#app.sidebar-collapsed .nav-sub .nav-item{
+  max-width:52px;
+  padding:9px 0;
+}
+#app.sidebar-collapsed .btn-logout{
+  width:100%;
+  max-width:52px;
+  margin:0 auto;
+  padding:10px 0;
+  justify-content:center;
+}
+#app.sidebar-collapsed .btn-logout i{margin:0}
 
 /* PAGES */
 .page{display:none}
@@ -753,14 +828,20 @@ tbody tr:hover td{background:var(--blue-50)}
     left:0;
     right:0;
     bottom:0;
+    width:100%;
+    max-width:100%;
     z-index:96;
-    padding:0 0 env(safe-area-inset-bottom,0px);
+    padding:0;
+    padding-bottom:env(safe-area-inset-bottom,0px);
     margin:0;
     border-radius:0;
     border:none;
-    background:transparent;
-    box-shadow:none;
-    filter:drop-shadow(0 -6px 18px rgba(10,37,64,0.1));
+    background:#fff;
+    box-shadow:0 -6px 22px rgba(10,37,64,0.1);
+    transform:translateZ(0);
+    -webkit-transform:translateZ(0);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
   }
   .mobile-dock-shape{
     display:block;
@@ -1534,6 +1615,15 @@ window.onload = function(){
   checkAutoLogin();
   checkPublicView();
 };
+window.addEventListener('pageshow', function(ev){
+  if(!ev.persisted) return;
+  const login = document.getElementById('loginPage');
+  if(login && login.style.display !== 'none') return;
+  const app = document.getElementById('app');
+  if(!app || app.style.display === 'none') return;
+  disableAppBackGuard();
+  enableAppBackGuard();
+});
 
 window.addEventListener('resize', ()=>{
   if(window.innerWidth > 768){
@@ -1725,13 +1815,17 @@ function updateMobileDockActive(pageKey){
 function enableAppBackGuard(){
   if(tvhBackGuardActive) return;
   tvhBackGuardActive = true;
-  try{ history.pushState({tvhApp:1}, '', window.location.href); }catch(e){}
-  window.addEventListener('popstate', onTvhAppPopState);
+  const url = window.location.href;
+  try{
+    history.pushState({tvhG:1}, '', url);
+    history.pushState({tvhG:2}, '', url);
+  }catch(e){}
+  window.addEventListener('popstate', onTvhAppPopState, true);
 }
 function disableAppBackGuard(){
   if(!tvhBackGuardActive) return;
   tvhBackGuardActive = false;
-  window.removeEventListener('popstate', onTvhAppPopState);
+  window.removeEventListener('popstate', onTvhAppPopState, true);
 }
 function onTvhAppPopState(){
   const login = document.getElementById('loginPage');
@@ -1740,22 +1834,31 @@ function onTvhAppPopState(){
   if(login && login.style.display !== 'none') return;
   if(!app || app.style.display === 'none') return;
   if(pub && pub.style.display === 'block') return;
-  try{ history.pushState({tvhApp:1}, '', window.location.href); }catch(e){}
-  if(document.getElementById('exitConfirmModal')?.classList.contains('open')) return;
+  const url = window.location.href;
+  const exitOpen = document.getElementById('exitConfirmModal')?.classList.contains('open');
+  const sealHistory = ()=>{
+    try{ history.pushState({tvhG:2}, '', url); }catch(e){}
+  };
+  requestAnimationFrame(sealHistory);
+  setTimeout(sealHistory, 0);
+  if(exitOpen) return;
   openModal('exitConfirmModal');
 }
 function exitConfirmStay(){
   closeModal('exitConfirmModal');
+  try{ history.pushState({tvhG:2}, '', window.location.href); }catch(e){}
 }
 function exitConfirmLeave(){
   closeModal('exitConfirmModal');
   disableAppBackGuard();
-  try{ history.back(); }catch(e){}
+  try{
+    history.go(-2);
+  }catch(e){}
   setTimeout(()=>{
     if(document.getElementById('app')?.style.display !== 'none'){
       doLogout();
     }
-  }, 120);
+  }, 200);
 }
 
 function setBillNavSubmenu(open){
